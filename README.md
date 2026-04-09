@@ -2,6 +2,8 @@
 
 Laboratório educacional de segurança ofensiva e defensiva implementado em Jupyter notebooks com Python.
 
+Este projeto simula cenários reais de risco, demonstrando como ataques simples podem comprometer sistemas mal configurados e como medidas básicas de segurança reduzem drasticamente a superfície de ataque.
+
 ## Objetivo
 
 Demonstrar o ciclo completo de segurança cibernética através de:
