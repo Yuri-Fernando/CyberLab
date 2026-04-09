@@ -1,0 +1,46 @@
+# =============================================================================
+# CyberLab - Dependências Python
+# =============================================================================
+
+# Jupyter e ambiente
+jupyter>=1.0.0
+jupyterlab>=3.5.0
+ipython>=8.0.0
+ipykernel>=6.0.0
+
+# Análise e processamento de dados
+numpy>=1.23.0
+pandas>=1.5.0
+matplotlib>=3.6.0
+seaborn>=0.12.0
+
+# Redes e segurança
+nmap>=0.0.1
+paramiko>=3.0.0
+requests>=2.28.0
+urllib3>=1.26.0
+
+# Criptografia
+cryptography>=39.0.0
+pycryptodome>=3.17.0
+
+# Captura de entrada (malware simulado)
+pynput>=1.7.0
+
+# Logging e relatórios
+python-dotenv>=0.21.0
+pyyaml>=6.0
+
+# Testes
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Código quality
+black>=22.0.0
+flake8>=4.0.0
+pylint>=2.15.0
+
+# Utilitários
+tqdm>=4.64.0
+colorama>=0.4.5
+tabulate>=0.9.0
