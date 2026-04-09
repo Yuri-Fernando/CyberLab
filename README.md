@@ -163,4 +163,4 @@ Ferramentas utilizadas:
 
 ## Nota
 
-Este projeto é educacional. Toda execução ocorre em ambiente isolado sem acesso a sistemas reais.🚀
+Este projeto é educacional. Toda execução ocorre em ambiente isolado sem acesso a sistemas reais.
