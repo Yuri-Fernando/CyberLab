@@ -5,9 +5,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-2.1.0-blue" alt="version">
+  <img src="https://img.shields.io/badge/version-2.2.0-blue" alt="version">
   <img src="https://img.shields.io/badge/python-3.10+-green" alt="python">
-  <img src="https://img.shields.io/badge/tests-12%2F12%20passing-brightgreen" alt="tests">
+  <img src="https://img.shields.io/badge/tests-20%2F20%20passing-brightgreen" alt="tests">
   <img src="https://img.shields.io/badge/license-Educational-orange" alt="license">
 </p>
 
@@ -22,7 +22,7 @@
 | 🔓 **Segurança Clássica** (v1.0) | Reconhecimento, brute force, malware simulado, hardening | ✅ |
 | 🤖 **ML Security & IA Generativa** (v2.x) | Adversarial ML, MLSecOps, deepfake/voice/text detection, governança | ✅ |
 
-Todo o código é **executável e testado de ponta a ponta** (`12/12` testes E2E passando). Os ataques e defesas de ML são implementados **do zero em NumPy/scikit-learn** — sem caixas-pretas — para deixar cada técnica transparente e auditável.
+Todo o código é **executável e testado de ponta a ponta** (`20/20` testes E2E passando). Os ataques e defesas de ML são implementados **do zero em NumPy/scikit-learn** — sem caixas-pretas — para deixar cada técnica transparente e auditável.
 
 > ⚠️ **Uso educacional.** Toda execução ocorre em ambiente isolado, com dados sintéticos ou VMs Host-Only. Nenhum sistema real é alvo.
 
@@ -45,8 +45,11 @@ CyberLab v2 demonstra, na prática, **como esses ataques funcionam e como defend
 | Técnica | Módulo | O que faz |
 |---------|--------|-----------|
 | **Data Poisoning** | [`poisoning_attacks.py`](scripts/python/ml_security/poisoning_attacks.py) | Label flipping (indiscriminado/direcionado), backdoor/trojan |
+| **Clean-Label Poisoning** | [`clean_label_poisoning.py`](scripts/python/ml_security/clean_label_poisoning.py) | **Feature collision** (Poison Frogs) — poison com rótulo correto que flipa o alvo |
 | **Evasão FGSM + PGD** | [`adversarial_attacks.py`](scripts/python/ml_security/adversarial_attacks.py) | Exemplos adversariais white-box + ataque black-box por queries |
+| **Transferability + Benchmark** | [`adversarial_transferability.py`](scripts/python/ml_security/adversarial_transferability.py) | Transferência entre modelos + curva de robustez + **gradient masking** |
 | **Defesa Adversarial** | [`adversarial_defense.py`](scripts/python/ml_security/adversarial_defense.py) | Adversarial training, defensive distillation, detecção de anomalia, ensemble |
+| **Watermarking + Activation Clustering** | [`model_watermarking.py`](scripts/python/ml_security/model_watermarking.py) | Prova de propriedade (anti-extração) + detecção de poisoning por clustering |
 | **Model Extraction** | [`model_extraction.py`](scripts/python/ml_security/model_extraction.py) | Clonagem de modelo via API + membership inference |
 | **Model Inversion** | [`model_inversion.py`](scripts/python/ml_security/model_inversion.py) | Reconstrução de dado de treino (privacy leakage) |
 | **Differential Privacy** | [`differential_privacy.py`](scripts/python/ml_security/differential_privacy.py) | **DP-SGD do zero** com clipping + ruído; mede trade-off ε vs utilidade |
@@ -56,8 +59,11 @@ CyberLab v2 demonstra, na prática, **como esses ataques funcionam e como defend
 
 | Técnica | Módulo | O que faz |
 |---------|--------|-----------|
-| **Voice Cloning** | [`audio_detector.py`](scripts/python/synthetic_media/audio_detector.py) | **MFCC/librosa reais** — centroid, bandwidth, ZCR discriminam voz sintética |
+| **Voice Cloning (features)** | [`audio_detector.py`](scripts/python/synthetic_media/audio_detector.py) | **MFCC/librosa reais** — centroid, bandwidth, ZCR discriminam voz sintética |
+| **Anti-Spoofing (classificador)** | [`antispoofing.py`](scripts/python/synthetic_media/antispoofing.py) | Classificador **estilo ASVspoof** treinado em MFCC + **callback verification** |
+| **Deepfake de Vídeo** | [`deepfake_video.py`](scripts/python/synthetic_media/deepfake_video.py) | Análise **temporal** (eye-blink, flicker) + proveniência **C2PA** |
 | **Forense de Imagem** | [`image_forensics.py`](scripts/python/synthetic_media/image_forensics.py) | **ELA (Error Level Analysis)** localizado + análise de ruído + EXIF |
+| **Phishing por IA** | [`phishing_detector.py`](scripts/python/synthetic_media/phishing_detector.py) | **Burstiness**, typosquatting/homoglyph de URL, **LLM-as-judge** |
 | **Texto por LLM** | [`text_detector.py`](scripts/python/synthetic_media/text_detector.py) | Perplexidade, estilometria, padrões típicos de LLM |
 | **Cadeia de Custódia** | [`forensic_evidence.py`](scripts/python/synthetic_media/forensic_evidence.py) | Chain of custody, hash SHA-256, laudo forense defensável |
 
@@ -66,6 +72,7 @@ CyberLab v2 demonstra, na prática, **como esses ataques funcionam e como defend
 | Framework | Módulo | O que faz |
 |-----------|--------|-----------|
 | **NIST AI RMF + ISO/IEC 42001** | [`ai_risk_assessment.py`](scripts/python/governance/ai_risk_assessment.py) | Assessment executável de maturidade + relatório priorizado |
+| **Controles Antifraude + EU AI Act** | [`antifraud_controls.py`](scripts/python/governance/antifraud_controls.py) | Dupla autorização, hold bancário, callback + classificação de risco EU AI Act |
 
 ### 🔓 Segurança Clássica (v1.0)
 
@@ -91,6 +98,7 @@ Painel visual consolidado gerado por [`scripts/generate_dashboard.py`](scripts/g
 | **OWASP ML Security Top 10** | Matriz de riscos implementados — [`docs/07`](docs/07_owasp_ml_security_top10.md) |
 | **NIST AI RMF 1.0** | Assessment de governança (GOVERN/MAP/MEASURE/MANAGE) |
 | **ISO/IEC 42001** | Controles de AI Management System |
+| **EU AI Act** | Classificação de risco (proibido/alto/limitado/mínimo) — [`antifraud_controls.py`](scripts/python/governance/antifraud_controls.py) |
 
 ---
 
@@ -100,7 +108,7 @@ Painel visual consolidado gerado por [`scripts/generate_dashboard.py`](scripts/g
 # 1. Instalar dependências (testado em Python 3.10)
 pip install -r requirements.txt
 
-# 2. Rodar a suite de testes end-to-end (12 testes)
+# 2. Rodar a suite de testes end-to-end (20 testes)
 python scripts/test_e2e_ml_security.py
 
 # 3. Gerar o dashboard visual
@@ -143,7 +151,7 @@ CyberLab/
 │   │   ├── brute_force.py        # v1.0: Medusa
 │   │   ├── logs_analyzer.py      # v1.0: análise de logs
 │   │   └── malware/              # v1.0: ransomware + keylogger simulados
-│   ├── test_e2e_ml_security.py   # suite E2E (12 testes)
+│   ├── test_e2e_ml_security.py   # suite E2E (20 testes)
 │   └── generate_dashboard.py     # dashboard visual
 ├── notebooks/                    # 10 notebooks do laboratório clássico
 ├── docs/                         # 7 documentos técnicos
@@ -170,8 +178,9 @@ CyberLab/
 ## 🧭 Roadmap
 
 - **v2.1** ✅ ML Security completo (FGSM/PGD, extraction, inversion, DP-SGD, MLSecOps), voz/imagem forense, governança, dashboard, testes E2E
-- **v2.2** ⏳ Notebooks Jupyter por módulo · integração Evidently/whylogs · classificador anti-spoofing (ASVspoof)
-- **v3.0** 🔮 Laboratório interativo com VMs · integração cloud (SageMaker/Vertex AI)
+- **v2.2** ✅ Clean-label poisoning, transferability + gradient masking, watermarking + activation clustering, anti-spoofing (ASVspoof), deepfake de vídeo + C2PA, phishing (URL/LLM-as-judge), controles antifraude + EU AI Act — **20/20 testes**
+- **v2.3** ⏳ Notebooks Jupyter por módulo · integração Evidently/whylogs · fine-tuning de detectores
+- **v3.0** 🔮 Laboratório interativo com VMs · integração cloud
 
 ---
 

@@ -2,6 +2,39 @@
 
 Todas as alterações significativas neste projeto serão documentadas neste arquivo.
 
+## [2.2.0] — Released (2026-09-16)
+
+### 🎯 Cobertura total das duas vagas (7 novos módulos, 20/20 testes E2E)
+
+Segunda passada de análise linha-a-linha das descrições de vaga, implementando
+**todos os pontos técnicos restantes** com código executável e testado.
+
+#### ML Security — Adicionado
+- **`clean_label_poisoning.py`**: Clean-label poisoning por **feature collision**
+  (Poison Frogs) — poisons mantêm rótulo correto e flipam o alvo (vítima KNN),
+  preservando a acurácia global (furtivo).
+- **`adversarial_transferability.py`**: **Transferability** de adversariais entre
+  modelos (substituto → alvos) + **robustness benchmarking** com detecção de
+  **gradient masking / obfuscated gradients**.
+- **`model_watermarking.py`**: **Watermarking** de modelos por backdoor benigno
+  (prova de propriedade contra extração) + **activation clustering** (defesa que
+  detecta poisoning agrupando representações por classe).
+
+#### Fraude / Governança — Adicionado
+- **`antispoofing.py`**: Classificador **anti-spoofing estilo ASVspoof** (treina em
+  features MFCC, CV) + **callback verification** (controle contra vishing/voz clonada).
+- **`deepfake_video.py`**: Detecção **temporal de deepfake de vídeo** (eye-blink rate,
+  flicker, regularidade) + verificação de proveniência **C2PA / Content Credentials**.
+- **`phishing_detector.py`**: **Burstiness**, heurísticas de **URL/typosquatting/
+  homoglyph**, TLD suspeito e **LLM-as-judge** para phishing gerado por IA.
+- **`governance/antifraud_controls.py`**: **Controles antifraude** (dupla autorização,
+  hold de mudança bancária, callback) + classificação de risco pelo **EU AI Act**.
+
+#### Testes
+- Suite E2E ampliada para **20 testes** (todos passando, determinística).
+
+---
+
 ## [2.1.0] — Released (2026-09-16)
 
 ### 🚀 ML Security completo, testado e com dashboard

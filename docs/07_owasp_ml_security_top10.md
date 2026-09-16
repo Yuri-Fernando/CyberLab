@@ -178,8 +178,8 @@ Implementação dos 10 principais riscos de segurança em sistemas de ML.
 | 6 | Performance Degradation | ✅ Completo | mlsecops_monitoring.py | ✅ Drift detection |
 | 7 | API Abuse | 🟡 Parcial | mlsecops_monitoring.py | ✅ Rate limiting |
 | 8 | Feedback Loop Poisoning | 🟡 Conceitual | docs/ | ❓ |
-| 9 | Model Poisoning (Supply Chain) | 🟡 Conceitual | poisoning_attacks.py | ❓ |
-| 10 | Transfer Learning Risks | 🟡 Parcial | adversarial_attacks.py | 🟡 |
+| 9 | Model Poisoning (Supply Chain) | ✅ Completo | clean_label_poisoning.py | ✅ model_watermarking.py (activation clustering) |
+| 10 | Transfer Learning Risks | ✅ Completo | adversarial_transferability.py | ✅ robustness benchmark |
 
 ---
 

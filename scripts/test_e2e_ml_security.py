@@ -29,11 +29,18 @@ from ml_security.model_extraction import ModelExtractionAttacker, MembershipInfe
 from ml_security.model_inversion import ModelInversionAttacker
 from ml_security.differential_privacy import DifferentialPrivacyExperiment
 from ml_security.mlsecops_monitoring import DriftDetector, MaliciousDriftDetector
+from ml_security.clean_label_poisoning import CleanLabelPoisoning
+from ml_security.adversarial_transferability import TransferabilityAnalyzer
+from ml_security.model_watermarking import ModelWatermark, ActivationClusteringDefense
 from synthetic_media.text_detector import TextSyntheticDetector
 from synthetic_media.audio_detector import VoiceCloningDetector
 from synthetic_media.image_forensics import ImageForensicsAnalyzer
 from synthetic_media.forensic_evidence import ChainOfCustody, ForensicAnalyzer
+from synthetic_media.antispoofing import AntiSpoofingClassifier, CallbackVerification
+from synthetic_media.deepfake_video import DeepfakeVideoDetector
+from synthetic_media.phishing_detector import PhishingDetector
 from governance.ai_risk_assessment import AIGovernanceAssessment
+from governance.antifraud_controls import AntifraudControls, EUAIActClassifier
 
 from sklearn.datasets import make_classification, load_iris
 from sklearn.model_selection import train_test_split
@@ -193,6 +200,99 @@ class E2ETestRunner:
         ok = 0 <= rep["combined_maturity"] <= 5
         self._record("12_governance_nist_iso", "PASS" if ok else "FAIL",
                      maturity=rep["combined_maturity"])
+
+    def test_13_clean_label_poisoning(self):
+        X, y = make_classification(n_samples=400, n_features=20, n_informative=15,
+                                   n_classes=2, random_state=42)
+        Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.3, random_state=42)
+        r = CleanLabelPoisoning().run_attack(Xtr, ytr, Xte, yte, n_poisons=20)
+        # Sucesso: acurácia global preservada (ataque furtivo)
+        ok = r["poisoned_model_test_acc"] > 0.5
+        self._record("13_clean_label_poisoning", "PASS" if ok else "FAIL",
+                     flipped=r["attack_flipped_target"], acc=round(r["poisoned_model_test_acc"], 3))
+
+    def test_14_transferability(self):
+        from sklearn.linear_model import LogisticRegression
+        from sklearn.ensemble import GradientBoostingClassifier
+        X, y = make_classification(n_samples=400, n_features=10, random_state=42)
+        Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.3, random_state=42)
+        sub = LogisticRegression(max_iter=1000).fit(Xtr, ytr)
+        targets = {"RF": RandomForestClassifier(n_estimators=50, random_state=1).fit(Xtr, ytr),
+                   "GB": GradientBoostingClassifier(n_estimators=50, random_state=1).fit(Xtr, ytr)}
+        a = TransferabilityAnalyzer()
+        r = a.measure_transferability(sub, targets, Xte, yte, epsilon=0.6)
+        rate = r["transferability_to_targets"]["RF"]["transfer_rate"]
+        self._record("14_transferability", "PASS" if rate >= 0 else "FAIL",
+                     rf_transfer=round(rate, 3))
+
+    def test_15_watermarking(self):
+        X, y = make_classification(n_samples=400, n_features=15, random_state=42)
+        Xtr, _, ytr, _ = train_test_split(X, y, test_size=0.3, random_state=42)
+        wm = ModelWatermark(n_triggers=25)
+        wm.generate_triggers(X.shape[1], watermark_label=1)
+        Xw, yw = wm.embed(Xtr, ytr)
+        owner = RandomForestClassifier(n_estimators=100, random_state=42).fit(Xw, yw)
+        independent = RandomForestClassifier(n_estimators=100, random_state=9).fit(Xtr, ytr)
+        owner_carries = wm.verify(owner)["is_stolen_or_derived"]
+        indep_carries = wm.verify(independent)["is_stolen_or_derived"]
+        ok = owner_carries and not indep_carries
+        self._record("15_model_watermarking", "PASS" if ok else "FAIL",
+                     owner=owner_carries, independent=indep_carries)
+
+    def test_16_activation_clustering(self):
+        X, y = make_classification(n_samples=400, n_features=15, random_state=42)
+        Xtr, _, ytr, _ = train_test_split(X, y, test_size=0.3, random_state=42)
+        poison = np.random.uniform(5, 8, (30, X.shape[1]))
+        Xp = np.vstack([Xtr, poison])
+        yp = np.hstack([ytr, np.zeros(30, dtype=int)])
+        r = ActivationClusteringDefense().detect(Xp, yp)
+        self._record("16_activation_clustering", "PASS" if r["n_flagged_samples"] > 0 else "FAIL",
+                     flagged=r["n_flagged_samples"])
+
+    def test_17_antispoofing(self):
+        clf = AntiSpoofingClassifier()
+        clf.train(n_per_class=25)
+        rn = clf.score_audio(clf.detector.generate_demo_natural(), "nat")
+        rs = clf.score_audio(clf.detector.generate_demo_synthetic(), "syn")
+        ok = rn["spoof_probability"] < 0.5 < rs["spoof_probability"]
+        cbv = CallbackVerification()
+        cbv.register_contact("CEO", "+55-11-99999-0000")
+        d = cbv.verify_request("CEO", "+55-11-98888-1234", "critical")
+        self._record("17_antispoofing_callback", "PASS" if ok and d["requires_callback"] else "FAIL",
+                     spoof=round(rs["spoof_probability"], 2), callback=d["requires_callback"])
+
+    def test_18_deepfake_video(self):
+        det = DeepfakeVideoDetector()
+        real = det.analyze_blink_series(det.generate_real_blink_series(), "real")
+        fake = det.analyze_blink_series(det.generate_deepfake_blink_series(), "fake")
+        c2pa_none = det.verify_c2pa_provenance(None)
+        ok = (not real["is_deepfake"]) and fake["is_deepfake"] and c2pa_none["trust"] == "low"
+        self._record("18_deepfake_video_c2pa", "PASS" if ok else "FAIL",
+                     real=real["is_deepfake"], fake=fake["is_deepfake"])
+
+    def test_19_phishing(self):
+        det = PhishingDetector()
+        ph = det.analyze("Dear customer, your account will be suspended. Verify now your "
+                         "password at http://paypa1.com/login immediately.")
+        legit = det.analyze("Oi Ana, segue o relatório que combinamos, ficou bem completo "
+                            "com os gráficos do trimestre. Qualquer coisa me chama depois.")
+        ok = ph["combined_phishing_score"] > legit["combined_phishing_score"]
+        self._record("19_phishing_url_llmjudge", "PASS" if ok else "FAIL",
+                     phishing=round(ph["combined_phishing_score"], 2),
+                     legit=round(legit["combined_phishing_score"], 2))
+
+    def test_20_eu_ai_act(self):
+        clf = EUAIActClassifier()
+        credit = clf.classify("scoring de crédito para empréstimo")
+        chatbot = clf.classify("chatbot de atendimento")
+        ok = credit["eu_ai_act_tier"] == "ALTO RISCO" and chatbot["eu_ai_act_tier"] == "RISCO LIMITADO"
+        # Antifraud controls
+        ctrl = AntifraudControls(dual_auth_threshold=10000)
+        blocked = ctrl.evaluate_transaction(250000, ["cfo"], changes_bank_details=True)
+        approved = ctrl.evaluate_transaction(5000, ["analyst"])
+        ok = ok and (not blocked["approved"]) and approved["approved"]
+        self._record("20_eu_ai_act_antifraud", "PASS" if ok else "FAIL",
+                     credit_tier=credit["eu_ai_act_tier"])
 
     def run_all(self):
         logger.info("=" * 64)
