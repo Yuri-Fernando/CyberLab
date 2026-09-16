@@ -32,7 +32,7 @@ Todo o código é **executável e testado de ponta a ponta** (`20/20` testes E2E
 
 A superfície de ataque mudou. Hoje o alvo não é só a rede — é **o modelo de ML que decide crédito, fraude e malware**, e o **conteúdo sintético** (deepfake, voz clonada, phishing por LLM) que quebra a verificação tradicional. Casos como o **deepfake da Arup (US$ 25 milhões)** e o **vishing com voz clonada na LastPass** mostram que controles clássicos não seguram esse vetor.
 
-CyberLab v2 demonstra, na prática, **como esses ataques funcionam e como defender** — cobrindo os requisitos técnicos de vagas sênior de **ML Security** e **Prevenção a Fraude / Governança de Risco de IA**.
+CyberLab v2 demonstra, na prática, **como esses ataques funcionam e como defender** — cobrindo as principais áreas técnicas de **ML Security** e **Prevenção a Fraude / Governança de Risco de IA**.
 
 📖 A narrativa completa está em [`docs/06_storytelling_v2.md`](docs/06_storytelling_v2.md).
 

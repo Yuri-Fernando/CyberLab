@@ -4,10 +4,10 @@ Todas as alterações significativas neste projeto serão documentadas neste arq
 
 ## [2.2.0] — Released (2026-09-16)
 
-### 🎯 Cobertura total das duas vagas (7 novos módulos, 20/20 testes E2E)
+### 🎯 Cobertura técnica ampliada (7 novos módulos, 20/20 testes E2E)
 
-Segunda passada de análise linha-a-linha das descrições de vaga, implementando
-**todos os pontos técnicos restantes** com código executável e testado.
+Segunda passada de análise dos domínios de ML Security e Fraude/Governança,
+implementando **todos os pontos técnicos restantes** com código executável e testado.
 
 #### ML Security — Adicionado
 - **`clean_label_poisoning.py`**: Clean-label poisoning por **feature collision**
@@ -99,7 +99,7 @@ O projeto original focava em cibersegurança ofensiva/defensiva clássica (brute
 2. **Detecção de Fraude por IA:** Identificar deepfakes, voice cloning, texto gerado por LLM
 3. **Governança de IA:** Implementar monitoramento de drift e resposta a incidente de modelo comprometido
 
-Alinhado com vagas sênior em ML Security e Forense Digital com IA.
+Focado nas áreas de ML Security e Forense Digital com IA.
 
 ---
 

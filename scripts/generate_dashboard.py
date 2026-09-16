@@ -162,7 +162,7 @@ def main():
     ax6 = fig.add_subplot(2, 3, 6)
     ax6.axis("off")
     summary = (
-        "COBERTURA DE VAGAS\n\n"
+        "COBERTURA TÉCNICA\n\n"
         "ML Security:\n"
         "  • FGSM + PGD (evasão)\n"
         "  • Model Extraction + Inversion\n"
