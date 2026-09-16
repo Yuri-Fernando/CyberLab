@@ -2,7 +2,7 @@
 
 Todas as alterações significativas neste projeto serão documentadas neste arquivo.
 
-## [2.0.0] — Unreleased (2026-09-16+)
+## [2.0.0] — Released (2026-09-16)
 
 ### 🎯 Nova Seção: ML Security & Adversarial ML
 
