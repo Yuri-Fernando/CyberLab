@@ -1,534 +1,181 @@
-# CyberLab — Segurança de Cibernética Clássica + Machine Learning
+<h1 align="center">🛡️ CyberLab</h1>
+<p align="center">
+  <strong>Laboratório de Segurança Ofensiva, Defensiva e de Machine Learning</strong><br>
+  Do pentest clássico ao Adversarial ML e à detecção de fraude por IA generativa
+</p>
 
-### Laboratório Integrado de Cibersegurança Ofensiva, Defensiva e ML Security
-
-## Status
-
-🟢 **v2.0.0 — Ativo — Projeto de portfólio / Cybersecurity + ML Security**
-
-Laboratório educacional de **segurança cibernética clássica + segurança de machine learning + detecção de fraude por IA**, desenvolvido com Python e Jupyter Notebooks para demonstrar, em ambiente isolado:
-
-- **Cibersegurança Tradicional (v1.0):** Reconhecimento, brute force, simulação de malware, defesa
-- **ML Security (NEW v2.0):** Ataques adversariais, data poisoning, adversarial training, detecção de anomalias
-- **Synthetic Media Detection (NEW v2.0):** Deepfake, voice cloning, texto gerado por LLM, governança de IA
-
-O projeto integra **ciclo de segurança clássico + ataque/defesa em modelos de ML + detecção de fraude habilitada por IA**.
-
-Todos os experimentos são executados em máquinas virtuais e rede **Host-Only**, sem acesso a sistemas reais ou dados de produção.
-
-### Roadmap
-- **v1.0.0 (2026-04-09):** Laboratório de cibersegurança clássica (reconhecimento, brute force, malware, defesa)
-- **v2.0.0 (2026-09-16):** Adição de ML Security + Synthetic Media Detection + Governance Framework
-- **v2.1 (2026-12-31):** Drift monitoring, response playbooks, casos de uso reais (scoring, fraude)
-- **v3.0 (2027-06-30):** Laboratório interativo com VMs, integração cloud (AWS SageMaker, Vertex AI)
+<p align="center">
+  <img src="https://img.shields.io/badge/version-2.1.0-blue" alt="version">
+  <img src="https://img.shields.io/badge/python-3.10+-green" alt="python">
+  <img src="https://img.shields.io/badge/tests-12%2F12%20passing-brightgreen" alt="tests">
+  <img src="https://img.shields.io/badge/license-Educational-orange" alt="license">
+</p>
 
 ---
 
-## Sobre o Projeto
+## 📌 Visão Geral
 
-O CyberLab foi estruturado como um laboratório de experimentação para demonstrar como vulnerabilidades e configurações inadequadas podem ser identificadas, exploradas de forma controlada e posteriormente mitigadas.
+**CyberLab** é um laboratório educacional que cobre o ciclo completo de segurança — **ataque, defesa, análise e governança** — em **duas frentes**:
 
-O fluxo completo é organizado em:
+| Frente | Conteúdo | Status |
+|--------|----------|--------|
+| 🔓 **Segurança Clássica** (v1.0) | Reconhecimento, brute force, malware simulado, hardening | ✅ |
+| 🤖 **ML Security & IA Generativa** (v2.x) | Adversarial ML, MLSecOps, deepfake/voice/text detection, governança | ✅ |
 
-```text
-Reconhecimento
-      ↓
-Preparação
-      ↓
-Ataque Controlado
-      ↓
-Simulação de Ameaças
-      ↓
-Análise
-      ↓
-Defesa
-      ↓
-Validação
-```
+Todo o código é **executável e testado de ponta a ponta** (`12/12` testes E2E passando). Os ataques e defesas de ML são implementados **do zero em NumPy/scikit-learn** — sem caixas-pretas — para deixar cada técnica transparente e auditável.
 
-A abordagem permite observar o ciclo completo de **ataque → evidência → mitigação → revalidação**.
+> ⚠️ **Uso educacional.** Toda execução ocorre em ambiente isolado, com dados sintéticos ou VMs Host-Only. Nenhum sistema real é alvo.
 
 ---
 
-## Objetivo
+## 🎯 Por que este projeto existe
 
-Demonstrar, de forma prática e isolada:
+A superfície de ataque mudou. Hoje o alvo não é só a rede — é **o modelo de ML que decide crédito, fraude e malware**, e o **conteúdo sintético** (deepfake, voz clonada, phishing por LLM) que quebra a verificação tradicional. Casos como o **deepfake da Arup (US$ 25 milhões)** e o **vishing com voz clonada na LastPass** mostram que controles clássicos não seguram esse vetor.
 
-* Reconhecimento e enumeração de serviços;
-* Testes de força bruta em ambientes autorizados;
-* Simulação educacional de malware;
-* Análise de logs;
-* Geração de inteligência a partir dos resultados;
-* Implementação de controles defensivos;
-* Reexecução dos cenários após mitigação;
-* Avaliação da efetividade das medidas de segurança.
+CyberLab v2 demonstra, na prática, **como esses ataques funcionam e como defender** — cobrindo os requisitos técnicos de vagas sênior de **ML Security** e **Prevenção a Fraude / Governança de Risco de IA**.
+
+📖 A narrativa completa está em [`docs/06_storytelling_v2.md`](docs/06_storytelling_v2.md).
 
 ---
 
-# Ciclo de Segurança
+## 🧩 Capacidades Técnicas
 
-## 1. Reconhecimento
+### 🤖 ML Security (Adversarial ML)
 
-Utilização do **Nmap** para:
+| Técnica | Módulo | O que faz |
+|---------|--------|-----------|
+| **Data Poisoning** | [`poisoning_attacks.py`](scripts/python/ml_security/poisoning_attacks.py) | Label flipping (indiscriminado/direcionado), backdoor/trojan |
+| **Evasão FGSM + PGD** | [`adversarial_attacks.py`](scripts/python/ml_security/adversarial_attacks.py) | Exemplos adversariais white-box + ataque black-box por queries |
+| **Defesa Adversarial** | [`adversarial_defense.py`](scripts/python/ml_security/adversarial_defense.py) | Adversarial training, defensive distillation, detecção de anomalia, ensemble |
+| **Model Extraction** | [`model_extraction.py`](scripts/python/ml_security/model_extraction.py) | Clonagem de modelo via API + membership inference |
+| **Model Inversion** | [`model_inversion.py`](scripts/python/ml_security/model_inversion.py) | Reconstrução de dado de treino (privacy leakage) |
+| **Differential Privacy** | [`differential_privacy.py`](scripts/python/ml_security/differential_privacy.py) | **DP-SGD do zero** com clipping + ruído; mede trade-off ε vs utilidade |
+| **MLSecOps** | [`mlsecops_monitoring.py`](scripts/python/ml_security/mlsecops_monitoring.py) | Drift detection, malicious drift, audit log, incident response |
 
-* Descoberta de hosts;
-* Identificação de portas;
-* Enumeração de serviços;
-* Mapeamento inicial da superfície de ataque.
+### 🎭 Detecção de Mídia Sintética & Forense
 
----
+| Técnica | Módulo | O que faz |
+|---------|--------|-----------|
+| **Voice Cloning** | [`audio_detector.py`](scripts/python/synthetic_media/audio_detector.py) | **MFCC/librosa reais** — centroid, bandwidth, ZCR discriminam voz sintética |
+| **Forense de Imagem** | [`image_forensics.py`](scripts/python/synthetic_media/image_forensics.py) | **ELA (Error Level Analysis)** localizado + análise de ruído + EXIF |
+| **Texto por LLM** | [`text_detector.py`](scripts/python/synthetic_media/text_detector.py) | Perplexidade, estilometria, padrões típicos de LLM |
+| **Cadeia de Custódia** | [`forensic_evidence.py`](scripts/python/synthetic_media/forensic_evidence.py) | Chain of custody, hash SHA-256, laudo forense defensável |
 
-## 2. Preparação
+### ⚖️ Governança de Risco de IA
 
-Etapa destinada à organização do ambiente e dos dados utilizados nos testes.
+| Framework | Módulo | O que faz |
+|-----------|--------|-----------|
+| **NIST AI RMF + ISO/IEC 42001** | [`ai_risk_assessment.py`](scripts/python/governance/ai_risk_assessment.py) | Assessment executável de maturidade + relatório priorizado |
 
-Inclui:
+### 🔓 Segurança Clássica (v1.0)
 
-* OSINT controlado;
-* Preparação das wordlists;
-* Configuração das máquinas virtuais;
-* Definição dos parâmetros de teste.
-
----
-
-## 3. Ataque Controlado
-
-O laboratório contempla testes de força bruta contra serviços presentes no ambiente isolado:
-
-* FTP;
-* SMB;
-* Aplicação web DVWA.
-
-A ferramenta **Medusa** é utilizada para os testes automatizados de autenticação.
+Reconhecimento (Nmap) · Brute force (FTP/SMB/DVWA) · Ransomware & keylogger simulados · Análise de logs · Hardening & validação.
 
 ---
 
-## 4. Simulação de Malware
+## 📊 Dashboard
 
-O projeto possui módulos educacionais para simulação controlada de comportamentos associados a malware:
+Painel visual consolidado gerado por [`scripts/generate_dashboard.py`](scripts/generate_dashboard.py):
 
-* Ransomware simulado;
-* Keylogger simulado.
+![Dashboard](results/dashboard_ml_security.png)
 
-Esses componentes são destinados exclusivamente ao ambiente de laboratório e à análise do comportamento das ameaças.
-
----
-
-## 5. Análise
-
-Os resultados das execuções são processados para gerar informações sobre:
-
-* Tentativas de autenticação;
-* Eventos relevantes;
-* Logs;
-* Resultados dos testes;
-* Evidências antes e depois das medidas de mitigação.
-
-Os scripts Python realizam parsing e organização dos dados para posterior visualização e análise.
+*Trade-off de privacidade DP-SGD · Robustez adversarial · Detecção de voz clonada · Model inversion · Maturidade de governança.*
 
 ---
 
-## 6. Defesa
+## 🗺️ Frameworks de Referência
 
-Após os testes ofensivos, são implementadas medidas defensivas, incluindo:
-
-* **Fail2ban**;
-* Hardening;
-* Multi-Factor Authentication (MFA);
-* Estratégias de defesa em profundidade.
-
----
-
-## 7. Validação
-
-Os cenários são executados novamente após a aplicação das medidas defensivas.
-
-```text
-Ataque
-   ↓
-Coleta de evidências
-   ↓
-Mitigação
-   ↓
-Novo teste
-   ↓
-Comparação
-```
-
-O objetivo é verificar se os mecanismos implementados alteraram o comportamento observado no ambiente.
+| Framework | Aplicação no projeto |
+|-----------|----------------------|
+| **MITRE ATLAS** | Threat modeling do pipeline de ML — [`docs/04`](docs/04_ml_security_threat_model.md) |
+| **OWASP ML Security Top 10** | Matriz de riscos implementados — [`docs/07`](docs/07_owasp_ml_security_top10.md) |
+| **NIST AI RMF 1.0** | Assessment de governança (GOVERN/MAP/MEASURE/MANAGE) |
+| **ISO/IEC 42001** | Controles de AI Management System |
 
 ---
 
-# Arquitetura do Laboratório
-
-```text
-                    ┌─────────────────────┐
-                    │      Kali Linux     │
-                    │  Estação de Testes  │
-                    └──────────┬──────────┘
-                               │
-                               │ Host-Only Network
-                               │
-                ┌──────────────┴──────────────┐
-                │                             │
-                ▼                             ▼
-      ┌──────────────────┐         ┌──────────────────┐
-      │   Metasploitable │         │       DVWA       │
-      │        2         │         │ Web Vulnerable  │
-      └──────────────────┘         └──────────────────┘
-```
-
-### Componentes
-
-| Componente            | Função                                       |
-| --------------------- | -------------------------------------------- |
-| **Kali Linux**        | Estação de testes e ferramentas de segurança |
-| **Metasploitable 2**  | Ambiente Linux propositalmente vulnerável    |
-| **DVWA**              | Aplicação web vulnerável para testes         |
-| **VirtualBox**        | Virtualização do laboratório                 |
-| **Host-Only Network** | Isolamento da comunicação                    |
-
----
-
-# Tecnologias
-
-| Categoria           | Tecnologia                     |
-| ------------------- | ------------------------------ |
-| Linguagem           | Python 3.10+                   |
-| Notebooks           | Jupyter                        |
-| Network Scanning    | Nmap                           |
-| Brute Force         | Medusa                         |
-| Criptografia        | Python `cryptography` / Fernet |
-| Vulnerable Target   | Metasploitable 2               |
-| Web Security Target | DVWA                           |
-| Virtualização       | VirtualBox                     |
-| Network Isolation   | Host-Only                      |
-| Defesa              | Fail2ban · Hardening · MFA     |
-| Análise             | Python · JSON · Logs           |
-
----
-
-# Estrutura do Projeto
-
-```text
-cyberlab-ataque-defesa-malware/
-│
-├── README.md
-├── .env.example
-├── .gitignore
-│
-├── notebooks/
-│   ├── 0_SETUP.ipynb
-│   ├── 1_reconhecimento.ipynb
-│   ├── 2_preparacao_ataque.ipynb
-│   ├── 3_brute_force_ftp.ipynb
-│   ├── 4_brute_force_smb.ipynb
-│   ├── 5_brute_force_dvwa.ipynb
-│   ├── 6_ransomware_simulado.ipynb
-│   ├── 7_keylogger_simulado.ipynb
-│   ├── 8_analise_logs.ipynb
-│   ├── 9_defesa_mitigacao.ipynb
-│   └── 10_validacao_final.ipynb
-│
-├── scripts/
-│   └── python/
-│       ├── scanner.py
-│       ├── brute_force.py
-│       ├── logs_analyzer.py
-│       └── malware/
-│           ├── ransomware.py
-│           └── keylogger.py
-│
-├── wordlists/
-│   ├── ftp_users.txt
-│   ├── ftp_passwords.txt
-│   ├── smb_users.txt
-│   └── common_passwords.txt
-│
-├── docs/
-│   ├── 01_metodologia.md
-│   ├── 02_ataques_detalhes.md
-│   └── 03_defesa_estrategia.md
-│
-├── results/
-│   ├── logs/
-│   └── ...
-│
-└── images/
-```
-
----
-
-# Como Executar
-
-## Requisitos
-
-* Python 3.10+
-* Jupyter Lab
-* Nmap
-* Medusa
-* VirtualBox
-* Kali Linux
-* Metasploitable 2
-* DVWA
-
----
-
-## 1. Configurar ambiente
-
-Crie o arquivo `.env`:
+## 🚀 Quickstart
 
 ```bash
-cp .env.example .env
-```
-
-Configure apenas parâmetros relacionados ao laboratório, como IPs e credenciais de teste.
-
----
-
-## 2. Instalar dependências
-
-```bash
+# 1. Instalar dependências (testado em Python 3.10)
 pip install -r requirements.txt
+
+# 2. Rodar a suite de testes end-to-end (12 testes)
+python scripts/test_e2e_ml_security.py
+
+# 3. Gerar o dashboard visual
+python scripts/generate_dashboard.py
+
+# 4. Rodar um módulo isolado (cada um tem demo standalone)
+python scripts/python/ml_security/differential_privacy.py
+python scripts/python/synthetic_media/audio_detector.py
+python scripts/python/governance/ai_risk_assessment.py
+```
+
+Cada módulo roda **standalone** e gera resultados em `results/`.
+
+---
+
+## 📈 Resultados Reais (reproduzíveis)
+
+```
+DP-SGD Trade-off:        ε=8.99→acc=0.82  ...  ε=1.12→acc=0.82   (privacidade ↑, utilidade estável)
+Model Inversion:         cos_sim=0.99 vs média real da classe    (HIGH leakage detectado)
+Model Extraction:        97% de agreement com modelo-alvo         (clonagem bem-sucedida)
+Voice Cloning:           natural=0.00 · sintético=1.00            (discriminação perfeita)
+Image Forensics (ELA):   adulterada=0.70 · limpa=0.25             (splicing detectado)
+Governança NIST AI RMF:  maturidade 3.0/5 (Definido)
 ```
 
 ---
 
-## 3. Inicializar Jupyter
+## 📁 Estrutura
 
-```bash
-jupyter lab
+```
+CyberLab/
+├── scripts/
+│   ├── python/
+│   │   ├── ml_security/          # 7 módulos: poisoning, FGSM/PGD, defense,
+│   │   │                         #   extraction, inversion, DP-SGD, MLSecOps
+│   │   ├── synthetic_media/      # voz (MFCC), imagem (ELA), texto (LLM), forense
+│   │   ├── governance/           # NIST AI RMF + ISO/IEC 42001
+│   │   ├── scanner.py            # v1.0: Nmap
+│   │   ├── brute_force.py        # v1.0: Medusa
+│   │   ├── logs_analyzer.py      # v1.0: análise de logs
+│   │   └── malware/              # v1.0: ransomware + keylogger simulados
+│   ├── test_e2e_ml_security.py   # suite E2E (12 testes)
+│   └── generate_dashboard.py     # dashboard visual
+├── notebooks/                    # 10 notebooks do laboratório clássico
+├── docs/                         # 7 documentos técnicos
+├── results/                      # saídas geradas (JSON, PNG)
+└── requirements.txt
 ```
 
 ---
 
-# Execução dos Notebooks
+## 📚 Documentação
 
-Os notebooks foram organizados para execução sequencial:
-
-### 0 — Setup
-
-```text
-0_SETUP.ipynb
-```
-
-Validação inicial do ambiente.
-
-### 1 — Reconhecimento
-
-```text
-1_reconhecimento.ipynb
-```
-
-Nmap e enumeração dos serviços.
-
-### 2 — Preparação
-
-```text
-2_preparacao_ataque.ipynb
-```
-
-Preparação dos cenários e wordlists.
-
-### 3–5 — Ataques de força bruta
-
-```text
-3_brute_force_ftp.ipynb
-4_brute_force_smb.ipynb
-5_brute_force_dvwa.ipynb
-```
-
-Testes controlados contra os alvos do laboratório.
-
-### 6–7 — Simulações
-
-```text
-6_ransomware_simulado.ipynb
-7_keylogger_simulado.ipynb
-```
-
-Simulações educacionais de comportamento de malware.
-
-### 8 — Análise
-
-```text
-8_analise_logs.ipynb
-```
-
-Processamento de logs e geração de indicadores.
-
-### 9 — Defesa
-
-```text
-9_defesa_mitigacao.ipynb
-```
-
-Implementação dos mecanismos de mitigação.
-
-### 10 — Validação
-
-```text
-10_validacao_final.ipynb
-```
-
-Reexecução dos testes com os controles de segurança ativos.
+| Doc | Conteúdo |
+|-----|----------|
+| [`01_metodologia.md`](docs/01_metodologia.md) | Ciclo de vida do laboratório clássico |
+| [`02_ataques_detalhes.md`](docs/02_ataques_detalhes.md) | Detalhes técnicos dos ataques |
+| [`03_defesa_estrategia.md`](docs/03_defesa_estrategia.md) | Defense in depth |
+| [`04_ml_security_threat_model.md`](docs/04_ml_security_threat_model.md) | MITRE ATLAS aplicado a ML |
+| [`05_synthetic_media_detection.md`](docs/05_synthetic_media_detection.md) | Deepfake, voice cloning, texto |
+| [`06_storytelling_v2.md`](docs/06_storytelling_v2.md) | A motivação por trás da v2.0 |
+| [`07_owasp_ml_security_top10.md`](docs/07_owasp_ml_security_top10.md) | Matriz OWASP ML Top 10 |
 
 ---
 
-# Saídas
+## 🧭 Roadmap
 
-Durante as execuções, o diretório `results/` pode receber:
-
-* Resultados dos testes;
-* Arquivos JSON;
-* Logs de autenticação;
-* Dados de análise;
-* Dashboards HTML;
-* Relatórios de validação;
-* Evidências produzidas pelos notebooks.
-
-A estrutura exata dos arquivos depende dos cenários executados.
+- **v2.1** ✅ ML Security completo (FGSM/PGD, extraction, inversion, DP-SGD, MLSecOps), voz/imagem forense, governança, dashboard, testes E2E
+- **v2.2** ⏳ Notebooks Jupyter por módulo · integração Evidently/whylogs · classificador anti-spoofing (ASVspoof)
+- **v3.0** 🔮 Laboratório interativo com VMs · integração cloud (SageMaker/Vertex AI)
 
 ---
 
-# Documentação
-
-### Metodologia
-
-[`docs/01_metodologia.md`](docs/01_metodologia.md)
-
-Apresenta o ciclo completo:
-
-```text
-Reconhecimento
-→ Enumeração
-→ Ataque
-→ Análise
-→ Defesa
-→ Validação
-```
-
-### Ataques
-
-[`docs/02_ataques_detalhes.md`](docs/02_ataques_detalhes.md)
-
-Documenta os cenários de teste implementados.
-
-### Defesa
-
-[`docs/03_defesa_estrategia.md`](docs/03_defesa_estrategia.md)
-
-Apresenta as estratégias de mitigação utilizadas.
-
----
-
-# O que este projeto demonstra
-
-* Reconhecimento e enumeração de redes;
-* Network Security;
-* Pentest em ambiente controlado;
-* Automação de testes com Python;
-* Uso de Nmap;
-* Testes de autenticação com Medusa;
-* Análise de logs;
-* Simulação controlada de ameaças;
-* Hardening;
-* Fail2ban;
-* MFA;
-* Defesa em profundidade;
-* Validação pós-mitigação;
-* Organização de experimentos em Jupyter;
-* Automação de análises de segurança.
-
----
-
-# Limitações
-
-* Os experimentos são executados exclusivamente em ambiente virtualizado e isolado;
-* Os alvos utilizados são ambientes intencionalmente vulneráveis;
-* Os resultados não representam comportamento de sistemas corporativos reais;
-* As simulações de ransomware e keylogger são destinadas exclusivamente ao laboratório;
-* A eficácia das mitigações depende da configuração específica do ambiente;
-* O projeto não constitui uma solução IDS, SIEM ou plataforma corporativa de segurança.
-
----
-
-# Melhorias Futuras
-
-* Automação completa do provisionamento das VMs;
-* Geração automática de relatórios de segurança;
-* Dashboard consolidado dos experimentos;
-* Integração de novas ferramentas de análise;
-* Correlação automática de eventos;
-* Detecção comportamental baseada em Machine Learning;
-* Integração experimental com SIEM;
-* Automação das etapas de validação;
-* Expansão da cobertura de cenários ofensivos e defensivos.
-
----
-
-# Segurança e Uso Responsável
-
-Este projeto possui finalidade **educacional e de pesquisa aplicada em cibersegurança**.
-
-Todos os testes devem ocorrer exclusivamente:
-
-* em máquinas próprias;
-* em ambientes virtualizados;
-* em laboratórios autorizados;
-* ou em sistemas para os quais exista autorização explícita.
-
-**Não execute os notebooks de ataque ou os scripts de simulação contra sistemas de terceiros.**
-
----
-
-# Status do Projeto
-
-🟢 **Concluído**
-
-O laboratório possui o ciclo completo implementado:
-
-* ✅ Reconhecimento;
-* ✅ Enumeração;
-* ✅ Preparação;
-* ✅ Testes de força bruta;
-* ✅ Simulações educacionais de malware;
-* ✅ Análise de logs;
-* ✅ Implementação de defesas;
-* ✅ Hardening;
-* ✅ Fail2ban;
-* ✅ MFA;
-* ✅ Revalidação dos cenários;
-* ✅ Documentação;
-* ✅ Notebooks organizados por etapa.
-
-O projeto permanece disponível como **laboratório de pesquisa e referência técnica** para experimentação com segurança ofensiva, defesa e automação de análises.
-
----
-
-# Referências
-
-### Ferramentas
-
-* [Nmap](https://nmap.org/)
-* [Medusa](https://github.com/jmk-foofus/medusa)
-* [Metasploitable 2](https://sourceforge.net/projects/metasploitable/)
-* [DVWA](https://github.com/digininja/DVWA)
-* [Jupyter](https://jupyter.org/)
-* [VirtualBox](https://www.virtualbox.org/)
-
----
-
-# Licença
-
-MIT License.
-
----
-
-# Autor
-
-**Yuri Fernando Dubbern**
-
-AI/ML Engineer · Cybersecurity · Automation · Python · Data
-
-[LinkedIn](https://www.linkedin.com/in/yuridubbern) · [GitHub](https://github.com/Yuri-Fernando) · [Lattes](http://lattes.cnpq.br/7151392692642166) · [Linktree](https://linktr.ee/yuri.f.dubbern)
+<p align="center">
+  <em>CyberLab — projeto de portfólio em cibersegurança & ML Security</em><br>
+  <strong>⚠️ Ambiente controlado. Fins estritamente educacionais.</strong>
+</p>

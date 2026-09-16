@@ -59,16 +59,15 @@ class DriftDetector:
         current_mean = X_batch.mean(axis=0)
         current_std = X_batch.std(axis=0)
 
-        # Distância normalizada (Mean Absolute Percentage Change)
-        mean_change = np.abs(
-            (current_mean - self.baseline_stats["mean"]) / (self.baseline_stats["mean"] + 1e-10)
-        )
-        std_change = np.abs(
-            (current_std - self.baseline_stats["std"]) / (self.baseline_stats["std"] + 1e-10)
-        )
+        # Drift como effect size padronizado (robusto para dados centrados em zero):
+        # shift de média em unidades do desvio-padrão do baseline (tipo z-score/Cohen's d).
+        baseline_std = self.baseline_stats["std"] + 1e-6
+        mean_shift = np.abs(current_mean - self.baseline_stats["mean"]) / baseline_std
+        # Mudança relativa de dispersão
+        std_shift = np.abs(current_std - self.baseline_stats["std"]) / baseline_std
 
-        # Drift score por feature
-        feature_drift = (mean_change + std_change) / 2
+        # Drift score por feature (0 = sem mudança; ~1 = shift de 1 desvio-padrão)
+        feature_drift = (mean_shift + std_shift) / 2
         overall_drift = feature_drift.mean()
 
         drift_detected = overall_drift > self.threshold

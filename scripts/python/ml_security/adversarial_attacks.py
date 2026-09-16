@@ -91,7 +91,7 @@ class AdversarialEvasionAttacker:
             X_adv[i] = X[i] + epsilon * grad_sign
 
             # Verificar se ataque foi bem-sucedido
-            pred_adv = model.predict([X_adv[i:i+1]])[0]
+            pred_adv = model.predict(X_adv[i:i+1])[0]
             if pred_adv != y[i]:
                 successful_attacks += 1
 
@@ -171,7 +171,7 @@ class AdversarialEvasionAttacker:
             X_adv[i] = x_adv_i
 
             # Verificar sucesso
-            pred_adv = model.predict([X_adv[i:i+1]])[0]
+            pred_adv = model.predict(X_adv[i:i+1])[0]
             if pred_adv != y[i]:
                 successful_attacks += 1
 

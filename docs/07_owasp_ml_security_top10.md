@@ -171,10 +171,10 @@ Implementação dos 10 principais riscos de segurança em sistemas de ML.
 | # | Risco | Status | Arquivo | Defesa Status |
 |---|-------|--------|---------|---------------|
 | 1 | Data Poisoning | ✅ Completo | poisoning_attacks.py | ✅ adversarial_defense.py |
-| 2 | Model Inversion | 🟡 Parcial | model_extraction.py | ✅ DP-SGD (doc) |
+| 2 | Model Inversion | ✅ Completo | model_inversion.py | ✅ differential_privacy.py (DP-SGD) |
 | 3 | Model Extraction | ✅ Completo | model_extraction.py | ✅ Logging, rate limit |
-| 4 | Adversarial Examples | ✅ Completo | adversarial_attacks.py | ✅ adversarial_defense.py |
-| 5 | Membership Inference | ✅ Completo | model_extraction.py | ✅ DP (doc) |
+| 4 | Adversarial Examples | ✅ Completo | adversarial_attacks.py (FGSM/PGD) | ✅ adversarial_defense.py |
+| 5 | Membership Inference | ✅ Completo | model_extraction.py | ✅ differential_privacy.py (DP-SGD) |
 | 6 | Performance Degradation | ✅ Completo | mlsecops_monitoring.py | ✅ Drift detection |
 | 7 | API Abuse | 🟡 Parcial | mlsecops_monitoring.py | ✅ Rate limiting |
 | 8 | Feedback Loop Poisoning | 🟡 Conceitual | docs/ | ❓ |

@@ -51,6 +51,16 @@ results/logs/*.log
 results/*.json
 results/*.txt
 results/*.html
+# Saídas transitórias dos módulos (JSON/PNG demo, mapas ELA, etc.)
+results/ml_security/
+results/synthetic_media/
+results/forensics/
+results/governance/
+results/e2e_tests/
+# Saídas geradas ao rodar módulos fora da raiz (ex: scripts/python/results/)
+scripts/**/results/
+# Manter o dashboard consolidado (referenciado no README)
+!results/dashboard_ml_security.png
 !results/.gitkeep
 !results/logs/.gitkeep
 

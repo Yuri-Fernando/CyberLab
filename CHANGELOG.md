@@ -2,6 +2,41 @@
 
 Todas as alterações significativas neste projeto serão documentadas neste arquivo.
 
+## [2.1.0] — Released (2026-09-16)
+
+### 🚀 ML Security completo, testado e com dashboard
+
+#### Adicionado
+- **`differential_privacy.py`**: DP-SGD implementado do zero (per-example gradient
+  clipping + ruído gaussiano), com medição do trade-off ε (privacidade) vs acurácia.
+- **`model_inversion.py`**: Model inversion por otimização black-box; mede privacy
+  leakage via similaridade cosseno com a média real da classe.
+- **`adversarial_attacks.py`**: FGSM, PGD e ataque black-box por queries (agora com
+  correção de bug de shape que impedia a avaliação de robustez).
+- **`audio_detector.py`**: Detecção de voice cloning com **MFCC/librosa reais**
+  (spectral centroid, bandwidth, ZCR) — discrimina voz humana vs sintética.
+- **`image_forensics.py`**: **ELA (Error Level Analysis) localizado** + análise de
+  ruído + EXIF para detectar splicing/manipulação de imagem.
+- **`governance/ai_risk_assessment.py`**: Assessment executável de **NIST AI RMF**
+  e **ISO/IEC 42001** com relatório de maturidade priorizado.
+- **`test_e2e_ml_security.py`**: Suite E2E reescrita — **12/12 testes passando**,
+  determinística, cobrindo todos os módulos.
+- **`generate_dashboard.py`**: Dashboard visual consolidado (PNG).
+
+#### Corrigido
+- Bug crítico no teste E2E: path de import apontava para `scripts/` em vez de
+  `scripts/python/` — os testes nunca rodavam. Agora corrigido.
+- FGSM/PGD: `model.predict([X[i:i+1]])` gerava array 3D. Corrigido.
+- Drift detector: métrica MAPE dividia por média ~0 em dados centrados (falso
+  positivo). Substituída por effect size padronizado (robusto).
+
+#### Mudanças
+- `requirements.txt`: limpo para conter apenas dependências realmente usadas e
+  instaláveis (removido `evidently-ai`, que não existe no PyPI com esse nome, e
+  libs pesadas não utilizadas). Bibliotecas de mercado citadas como referência.
+
+---
+
 ## [2.0.0] — Released (2026-09-16)
 
 ### 🎯 Nova Seção: ML Security & Adversarial ML
