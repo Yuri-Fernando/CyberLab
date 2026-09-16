@@ -1,16 +1,26 @@
-# CyberLab — Ataque, Defesa e Simulação de Malware
+# CyberLab — Segurança de Cibernética Clássica + Machine Learning
 
-### Laboratório de Cibersegurança para Ataque, Análise e Defesa
+### Laboratório Integrado de Cibersegurança Ofensiva, Defensiva e ML Security
 
 ## Status
 
-🟢 **Concluído — Projeto de portfólio / Cybersecurity**
+🟢 **v2.0.0 — Ativo — Projeto de portfólio / Cybersecurity + ML Security**
 
-Laboratório educacional de **segurança ofensiva e defensiva**, desenvolvido com Python e Jupyter Notebooks para simular, em ambiente isolado, diferentes etapas do ciclo de segurança cibernética.
+Laboratório educacional de **segurança cibernética clássica + segurança de machine learning + detecção de fraude por IA**, desenvolvido com Python e Jupyter Notebooks para demonstrar, em ambiente isolado:
 
-O projeto integra **reconhecimento, enumeração, exploração controlada, análise de evidências, simulação de ameaças, implementação de defesas e validação das mitigações**.
+- **Cibersegurança Tradicional (v1.0):** Reconhecimento, brute force, simulação de malware, defesa
+- **ML Security (NEW v2.0):** Ataques adversariais, data poisoning, adversarial training, detecção de anomalias
+- **Synthetic Media Detection (NEW v2.0):** Deepfake, voice cloning, texto gerado por LLM, governança de IA
+
+O projeto integra **ciclo de segurança clássico + ataque/defesa em modelos de ML + detecção de fraude habilitada por IA**.
 
 Todos os experimentos são executados em máquinas virtuais e rede **Host-Only**, sem acesso a sistemas reais ou dados de produção.
+
+### Roadmap
+- **v1.0.0 (2026-04-09):** Laboratório de cibersegurança clássica (reconhecimento, brute force, malware, defesa)
+- **v2.0.0 (2026-09-16):** Adição de ML Security + Synthetic Media Detection + Governance Framework
+- **v2.1 (2026-12-31):** Drift monitoring, response playbooks, casos de uso reais (scoring, fraude)
+- **v3.0 (2027-06-30):** Laboratório interativo com VMs, integração cloud (AWS SageMaker, Vertex AI)
 
 ---
 
