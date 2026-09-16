@@ -1,49 +1,206 @@
-# CyberLab: Ataque, Defesa e Simulação de Malware
+# CyberLab — Ataque, Defesa e Simulação de Malware
 
-Laboratório educacional de segurança ofensiva e defensiva implementado em Jupyter notebooks com Python.
+### Laboratório de Cibersegurança para Ataque, Análise e Defesa
+
+## Status
+
+🟢 **Concluído — Projeto de portfólio / Cybersecurity**
+
+Laboratório educacional de **segurança ofensiva e defensiva**, desenvolvido com Python e Jupyter Notebooks para simular, em ambiente isolado, diferentes etapas do ciclo de segurança cibernética.
+
+O projeto integra **reconhecimento, enumeração, exploração controlada, análise de evidências, simulação de ameaças, implementação de defesas e validação das mitigações**.
+
+Todos os experimentos são executados em máquinas virtuais e rede **Host-Only**, sem acesso a sistemas reais ou dados de produção.
+
+---
+
+## Sobre o Projeto
+
+O CyberLab foi estruturado como um laboratório de experimentação para demonstrar como vulnerabilidades e configurações inadequadas podem ser identificadas, exploradas de forma controlada e posteriormente mitigadas.
+
+O fluxo completo é organizado em:
+
+```text
+Reconhecimento
+      ↓
+Preparação
+      ↓
+Ataque Controlado
+      ↓
+Simulação de Ameaças
+      ↓
+Análise
+      ↓
+Defesa
+      ↓
+Validação
+```
+
+A abordagem permite observar o ciclo completo de **ataque → evidência → mitigação → revalidação**.
+
+---
 
 ## Objetivo
 
-Demonstrar o ciclo completo de segurança cibernética através de:
+Demonstrar, de forma prática e isolada:
 
-- Reconhecimento e enumeração de serviços (Nmap)
-- Ataques de força bruta contra FTP, SMB e aplicações web
-- Simulação educacional de malware (ransomware, keylogger)
-- Análise de vulnerabilidades e geração de inteligência
-- Implementação de defesas (fail2ban, hardening, MFA)
-- Validação e re-teste de mitigações
+* Reconhecimento e enumeração de serviços;
+* Testes de força bruta em ambientes autorizados;
+* Simulação educacional de malware;
+* Análise de logs;
+* Geração de inteligência a partir dos resultados;
+* Implementação de controles defensivos;
+* Reexecução dos cenários após mitigação;
+* Avaliação da efetividade das medidas de segurança.
 
-Todos os testes ocorrem em ambiente isolado (VMs virtualizadas, rede Host-Only) sem dados reais.
+---
 
-## Estrutura
+# Ciclo de Segurança
 
-Este projeto implementa uma cadeia completa de pentest:
+## 1. Reconhecimento
 
-1. Reconhecimento (Nmap, enumeração de serviços)
-2. Preparação (OSINT, geração de wordlists)
-3. Ataque (força bruta contra FTP, SMB, web)
-4. Simulação de malware (ransomware, keylogger educacionais)
-5. Análise (parsing de logs, dashboard)
-6. Defesa (fail2ban, hardening, MFA)
-7. Validação (re-teste com mitigações ativas)
+Utilização do **Nmap** para:
 
-## Tecnologias
+* Descoberta de hosts;
+* Identificação de portas;
+* Enumeração de serviços;
+* Mapeamento inicial da superfície de ataque.
 
-| Componente | Tecnologia |
-|-----------|-----------|
-| Escaneamento | Nmap |
-| Força bruta | Medusa |
-| Análise | Python 3.10+ |
-| Criptografia | cryptography (Fernet) |
-| Notebooks | Jupyter |
-| Target (desenvolvimento) | Metasploitable 2, DVWA |
-| Isolamento | VirtualBox, rede Host-Only |
+---
 
-## Arquivos
+## 2. Preparação
 
-Estrutura do projeto:
+Etapa destinada à organização do ambiente e dos dados utilizados nos testes.
 
+Inclui:
+
+* OSINT controlado;
+* Preparação das wordlists;
+* Configuração das máquinas virtuais;
+* Definição dos parâmetros de teste.
+
+---
+
+## 3. Ataque Controlado
+
+O laboratório contempla testes de força bruta contra serviços presentes no ambiente isolado:
+
+* FTP;
+* SMB;
+* Aplicação web DVWA.
+
+A ferramenta **Medusa** é utilizada para os testes automatizados de autenticação.
+
+---
+
+## 4. Simulação de Malware
+
+O projeto possui módulos educacionais para simulação controlada de comportamentos associados a malware:
+
+* Ransomware simulado;
+* Keylogger simulado.
+
+Esses componentes são destinados exclusivamente ao ambiente de laboratório e à análise do comportamento das ameaças.
+
+---
+
+## 5. Análise
+
+Os resultados das execuções são processados para gerar informações sobre:
+
+* Tentativas de autenticação;
+* Eventos relevantes;
+* Logs;
+* Resultados dos testes;
+* Evidências antes e depois das medidas de mitigação.
+
+Os scripts Python realizam parsing e organização dos dados para posterior visualização e análise.
+
+---
+
+## 6. Defesa
+
+Após os testes ofensivos, são implementadas medidas defensivas, incluindo:
+
+* **Fail2ban**;
+* Hardening;
+* Multi-Factor Authentication (MFA);
+* Estratégias de defesa em profundidade.
+
+---
+
+## 7. Validação
+
+Os cenários são executados novamente após a aplicação das medidas defensivas.
+
+```text
+Ataque
+   ↓
+Coleta de evidências
+   ↓
+Mitigação
+   ↓
+Novo teste
+   ↓
+Comparação
 ```
+
+O objetivo é verificar se os mecanismos implementados alteraram o comportamento observado no ambiente.
+
+---
+
+# Arquitetura do Laboratório
+
+```text
+                    ┌─────────────────────┐
+                    │      Kali Linux     │
+                    │  Estação de Testes  │
+                    └──────────┬──────────┘
+                               │
+                               │ Host-Only Network
+                               │
+                ┌──────────────┴──────────────┐
+                │                             │
+                ▼                             ▼
+      ┌──────────────────┐         ┌──────────────────┐
+      │   Metasploitable │         │       DVWA       │
+      │        2         │         │ Web Vulnerable  │
+      └──────────────────┘         └──────────────────┘
+```
+
+### Componentes
+
+| Componente            | Função                                       |
+| --------------------- | -------------------------------------------- |
+| **Kali Linux**        | Estação de testes e ferramentas de segurança |
+| **Metasploitable 2**  | Ambiente Linux propositalmente vulnerável    |
+| **DVWA**              | Aplicação web vulnerável para testes         |
+| **VirtualBox**        | Virtualização do laboratório                 |
+| **Host-Only Network** | Isolamento da comunicação                    |
+
+---
+
+# Tecnologias
+
+| Categoria           | Tecnologia                     |
+| ------------------- | ------------------------------ |
+| Linguagem           | Python 3.10+                   |
+| Notebooks           | Jupyter                        |
+| Network Scanning    | Nmap                           |
+| Brute Force         | Medusa                         |
+| Criptografia        | Python `cryptography` / Fernet |
+| Vulnerable Target   | Metasploitable 2               |
+| Web Security Target | DVWA                           |
+| Virtualização       | VirtualBox                     |
+| Network Isolation   | Host-Only                      |
+| Defesa              | Fail2ban · Hardening · MFA     |
+| Análise             | Python · JSON · Logs           |
+
+---
+
+# Estrutura do Projeto
+
+```text
 cyberlab-ataque-defesa-malware/
 │
 ├── README.md
@@ -63,13 +220,14 @@ cyberlab-ataque-defesa-malware/
 │   ├── 9_defesa_mitigacao.ipynb
 │   └── 10_validacao_final.ipynb
 │
-├── scripts/python/
-│   ├── scanner.py
-│   ├── brute_force.py
-│   ├── logs_analyzer.py
-│   └── malware/
-│       ├── ransomware.py
-│       └── keylogger.py
+├── scripts/
+│   └── python/
+│       ├── scanner.py
+│       ├── brute_force.py
+│       ├── logs_analyzer.py
+│       └── malware/
+│           ├── ransomware.py
+│           └── keylogger.py
 │
 ├── wordlists/
 │   ├── ftp_users.txt
@@ -82,85 +240,285 @@ cyberlab-ataque-defesa-malware/
 │   ├── 02_ataques_detalhes.md
 │   └── 03_defesa_estrategia.md
 │
-├── results/ (gerado durante execução)
+├── results/
 │   ├── logs/
-│   └── (JSON/reports gerados pelos notebooks)
+│   └── ...
 │
-└── images/ (para screenshots opcionais)
+└── images/
 ```
 
 ---
 
-## Execução
+# Como Executar
 
-Requisitos:
-- Python 3.10+
-- Jupyter Lab
-- Nmap e Medusa instalados (para testes reais)
+## Requisitos
 
-Setup:
+* Python 3.10+
+* Jupyter Lab
+* Nmap
+* Medusa
+* VirtualBox
+* Kali Linux
+* Metasploitable 2
+* DVWA
+
+---
+
+## 1. Configurar ambiente
+
+Crie o arquivo `.env`:
 
 ```bash
 cp .env.example .env
-# Editar .env com IPs e credenciais de teste
+```
 
+Configure apenas parâmetros relacionados ao laboratório, como IPs e credenciais de teste.
+
+---
+
+## 2. Instalar dependências
+
+```bash
 pip install -r requirements.txt
+```
 
+---
+
+## 3. Inicializar Jupyter
+
+```bash
 jupyter lab
 ```
 
-Execução sequencial via notebooks:
+---
 
-1. 0_SETUP.ipynb - Validar ambiente
-2. 1_reconhecimento.ipynb - Scan inicial
-3. 2_preparacao_ataque.ipynb - OSINT e wordlists
-4. 3-5_brute_force_*.ipynb - Testes de força bruta
-5. 6-7_malware_*.ipynb - Simulações educacionais
-6. 8_analise_logs.ipynb - Gerar análise e dashboard
-7. 9_defesa_mitigacao.ipynb - Implementar defesas
-8. 10_validacao_final.ipynb - Re-testar e validar
+# Execução dos Notebooks
 
-Dados serão gerados automaticamente em /results durante execução dos notebooks.
+Os notebooks foram organizados para execução sequencial:
 
-## Escopo
+### 0 — Setup
 
-Ambiente isolado (Host-Only network) com VMs virtualizadas:
-- Metasploitable 2: Sistema Linux com serviços vulneráveis (FTP, SMB, SSH)
-- DVWA: Aplicação web propositalmente vulnerável
-- Kali Linux: Estação de teste com ferramentas de pentest
+```text
+0_SETUP.ipynb
+```
 
-Nenhum acesso a sistemas reais ou dados produção.
+Validação inicial do ambiente.
 
-## Saídas
+### 1 — Reconhecimento
 
-Durante execução dos notebooks, os seguintes dados são gerados em /results:
+```text
+1_reconhecimento.ipynb
+```
 
-- Arquivos JSON com resultados de ataques
-- Logs de tentativas de força bruta
-- Dashboard HTML com análise
-- Relatórios de validação pós-defesa
+Nmap e enumeração dos serviços.
 
-Estes arquivos refletem o que cada script Python gera e são consumidos pelos notebooks.
+### 2 — Preparação
 
-## Documentação
+```text
+2_preparacao_ataque.ipynb
+```
 
-Referência técnica em docs/:
+Preparação dos cenários e wordlists.
 
-- 01_metodologia.md - Ciclo de vida completo (recon, enum, ataque, análise, defesa, validação)
-- 02_ataques_detalhes.md - Detalhes técnicos de cada ataque
-- 03_defesa_estrategia.md - Defense in depth, implementações de mitigação
+### 3–5 — Ataques de força bruta
 
-## Referências
+```text
+3_brute_force_ftp.ipynb
+4_brute_force_smb.ipynb
+5_brute_force_dvwa.ipynb
+```
 
-Ferramentas utilizadas:
+Testes controlados contra os alvos do laboratório.
 
-- Nmap: Escaneamento de portas e enumeração de serviços
-- Medusa: Força bruta paralela contra múltiplos serviços
-- Metasploitable 2: Sistema Linux vulnerable para testes
-- DVWA: Aplicação web vulnerable
-- Python 3.10+: Scripts de análise e simulação
-- Jupyter: Notebooks para documentação interativa
+### 6–7 — Simulações
 
-## Nota
+```text
+6_ransomware_simulado.ipynb
+7_keylogger_simulado.ipynb
+```
 
-Este projeto é educacional. Toda execução ocorre em ambiente isolado sem acesso a sistemas reais.🚀
+Simulações educacionais de comportamento de malware.
+
+### 8 — Análise
+
+```text
+8_analise_logs.ipynb
+```
+
+Processamento de logs e geração de indicadores.
+
+### 9 — Defesa
+
+```text
+9_defesa_mitigacao.ipynb
+```
+
+Implementação dos mecanismos de mitigação.
+
+### 10 — Validação
+
+```text
+10_validacao_final.ipynb
+```
+
+Reexecução dos testes com os controles de segurança ativos.
+
+---
+
+# Saídas
+
+Durante as execuções, o diretório `results/` pode receber:
+
+* Resultados dos testes;
+* Arquivos JSON;
+* Logs de autenticação;
+* Dados de análise;
+* Dashboards HTML;
+* Relatórios de validação;
+* Evidências produzidas pelos notebooks.
+
+A estrutura exata dos arquivos depende dos cenários executados.
+
+---
+
+# Documentação
+
+### Metodologia
+
+[`docs/01_metodologia.md`](docs/01_metodologia.md)
+
+Apresenta o ciclo completo:
+
+```text
+Reconhecimento
+→ Enumeração
+→ Ataque
+→ Análise
+→ Defesa
+→ Validação
+```
+
+### Ataques
+
+[`docs/02_ataques_detalhes.md`](docs/02_ataques_detalhes.md)
+
+Documenta os cenários de teste implementados.
+
+### Defesa
+
+[`docs/03_defesa_estrategia.md`](docs/03_defesa_estrategia.md)
+
+Apresenta as estratégias de mitigação utilizadas.
+
+---
+
+# O que este projeto demonstra
+
+* Reconhecimento e enumeração de redes;
+* Network Security;
+* Pentest em ambiente controlado;
+* Automação de testes com Python;
+* Uso de Nmap;
+* Testes de autenticação com Medusa;
+* Análise de logs;
+* Simulação controlada de ameaças;
+* Hardening;
+* Fail2ban;
+* MFA;
+* Defesa em profundidade;
+* Validação pós-mitigação;
+* Organização de experimentos em Jupyter;
+* Automação de análises de segurança.
+
+---
+
+# Limitações
+
+* Os experimentos são executados exclusivamente em ambiente virtualizado e isolado;
+* Os alvos utilizados são ambientes intencionalmente vulneráveis;
+* Os resultados não representam comportamento de sistemas corporativos reais;
+* As simulações de ransomware e keylogger são destinadas exclusivamente ao laboratório;
+* A eficácia das mitigações depende da configuração específica do ambiente;
+* O projeto não constitui uma solução IDS, SIEM ou plataforma corporativa de segurança.
+
+---
+
+# Melhorias Futuras
+
+* Automação completa do provisionamento das VMs;
+* Geração automática de relatórios de segurança;
+* Dashboard consolidado dos experimentos;
+* Integração de novas ferramentas de análise;
+* Correlação automática de eventos;
+* Detecção comportamental baseada em Machine Learning;
+* Integração experimental com SIEM;
+* Automação das etapas de validação;
+* Expansão da cobertura de cenários ofensivos e defensivos.
+
+---
+
+# Segurança e Uso Responsável
+
+Este projeto possui finalidade **educacional e de pesquisa aplicada em cibersegurança**.
+
+Todos os testes devem ocorrer exclusivamente:
+
+* em máquinas próprias;
+* em ambientes virtualizados;
+* em laboratórios autorizados;
+* ou em sistemas para os quais exista autorização explícita.
+
+**Não execute os notebooks de ataque ou os scripts de simulação contra sistemas de terceiros.**
+
+---
+
+# Status do Projeto
+
+🟢 **Concluído**
+
+O laboratório possui o ciclo completo implementado:
+
+* ✅ Reconhecimento;
+* ✅ Enumeração;
+* ✅ Preparação;
+* ✅ Testes de força bruta;
+* ✅ Simulações educacionais de malware;
+* ✅ Análise de logs;
+* ✅ Implementação de defesas;
+* ✅ Hardening;
+* ✅ Fail2ban;
+* ✅ MFA;
+* ✅ Revalidação dos cenários;
+* ✅ Documentação;
+* ✅ Notebooks organizados por etapa.
+
+O projeto permanece disponível como **laboratório de pesquisa e referência técnica** para experimentação com segurança ofensiva, defesa e automação de análises.
+
+---
+
+# Referências
+
+### Ferramentas
+
+* [Nmap](https://nmap.org/)
+* [Medusa](https://github.com/jmk-foofus/medusa)
+* [Metasploitable 2](https://sourceforge.net/projects/metasploitable/)
+* [DVWA](https://github.com/digininja/DVWA)
+* [Jupyter](https://jupyter.org/)
+* [VirtualBox](https://www.virtualbox.org/)
+
+---
+
+# Licença
+
+MIT License.
+
+---
+
+# Autor
+
+**Yuri Fernando Dubbern**
+
+AI/ML Engineer · Cybersecurity · Automation · Python · Data
+
+[LinkedIn](https://www.linkedin.com/in/yuridubbern) · [GitHub](https://github.com/Yuri-Fernando) · [Lattes](http://lattes.cnpq.br/7151392692642166) · [Linktree](https://linktr.ee/yuri.f.dubbern)
