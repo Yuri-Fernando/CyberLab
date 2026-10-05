@@ -55,3 +55,7 @@ pytest>=7.0.0
 #   - opacus / tensorflow-privacy                      -> DP-SGD
 #   - evidently / whylogs                              -> monitoramento de drift
 # =============================================================================
+
+# --- Serving seguro opcional do laboratório (API local) ---
+fastapi>=0.115.0
+uvicorn>=0.30.0

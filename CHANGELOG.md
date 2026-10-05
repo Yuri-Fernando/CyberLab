@@ -2,6 +2,25 @@
 
 Todas as alterações significativas neste projeto serão documentadas neste arquivo.
 
+## [2.3.0-dev] — 2026-10-05
+
+### Adicionado
+- FGSM e PGD white-box reais com PyTorch, projeção L∞/L2 e métricas JSON.
+- Taxonomia black-box decision/score/transfer com orçamento de queries.
+- Benchmark opcional from scratch × ART × Foolbox e auditoria de gradient masking.
+- FastAPI fail-closed, rate limiting, query monitor e output minimization.
+- Pipeline MLSecOps, estados de incidente, fallback, quarantine e rollback.
+- Adapters opcionais Evidently/whylogs, documentação e notebooks 11–15.
+- Dez testes de aceitação para o novo core.
+
+### Corrigido
+- A implementação histórica por diferenças finitas deixou de ser descrita como white-box.
+- ART/Foolbox deixaram de ser apresentados como dependências centrais já instaladas.
+- VERSION e a árvore de notebooks foram alinhados ao estado real do repositório.
+# CHANGELOG — CyberLab
+
+Todas as alterações significativas neste projeto serão documentadas neste arquivo.
+
 ## [2.2.0] — Released (2026-09-16)
 
 ### 🎯 Cobertura técnica ampliada (7 novos módulos, 20/20 testes E2E)

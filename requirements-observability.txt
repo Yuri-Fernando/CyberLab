@@ -1,0 +1,3 @@
+# Integrações opcionais de observabilidade
+evidently>=0.4
+whylogs>=1.3

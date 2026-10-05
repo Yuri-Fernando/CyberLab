@@ -312,7 +312,13 @@ class E2ETestRunner:
         out = self.output_dir / f"e2e_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
         self.results["summary"] = {"passed": self.passed, "failed": self.failed}
         with open(out, "w") as f:
-            json.dump(self.results, f, indent=2, ensure_ascii=False)
+            json.dump(
+                self.results,
+                f,
+                indent=2,
+                ensure_ascii=False,
+                default=lambda value: value.item() if isinstance(value, np.generic) else str(value),
+            )
         return self.failed == 0
 
 

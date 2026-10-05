@@ -1,190 +1,308 @@
 <h1 align="center">🛡️ CyberLab</h1>
+
 <p align="center">
-  <strong>Laboratório de Segurança Ofensiva, Defensiva e de Machine Learning</strong><br>
-  Do pentest clássico ao Adversarial ML e à detecção de fraude por IA generativa
+  <strong>AI Security, Adversarial ML & MLSecOps Engineering Lab</strong><br>
+  Ataque, medição, defesa e operação segura de modelos de Machine Learning
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-2.2.0-blue" alt="version">
+  <img src="https://img.shields.io/badge/version-2.3.0--dev-blue" alt="version">
   <img src="https://img.shields.io/badge/python-3.10+-green" alt="python">
-  <img src="https://img.shields.io/badge/tests-20%2F20%20passing-brightgreen" alt="tests">
-  <img src="https://img.shields.io/badge/license-Educational-orange" alt="license">
+  <img src="https://img.shields.io/badge/tests-30%2F30-brightgreen" alt="tests">
+  <img src="https://img.shields.io/badge/Ruff-passing-brightgreen" alt="ruff">
+  <img src="https://img.shields.io/badge/use-educational-orange" alt="educational use">
 </p>
 
----
+## Visão geral
 
-## 📌 Visão Geral
+O CyberLab é um laboratório aplicado de segurança para sistemas de Machine Learning. O projeto nasceu como um ambiente de cibersegurança ofensiva e defensiva e evoluiu para cobrir o ciclo completo de proteção de modelos: ameaças aos dados de treinamento, evasão em inferência, extração, vazamento de privacidade, monitoramento operacional e resposta a incidentes.
 
-**CyberLab** é um laboratório educacional que cobre o ciclo completo de segurança — **ataque, defesa, análise e governança** — em **duas frentes**:
+A versão 2.3 adiciona um núcleo adversarial PyTorch com gradientes reais, uma taxonomia explícita de ataques black-box, auditoria de gradient masking, uma API de inferência endurecida e um pipeline MLSecOps testável.
 
-| Frente | Conteúdo | Status |
-|--------|----------|--------|
-| 🔓 **Segurança Clássica** (v1.0) | Reconhecimento, brute force, malware simulado, hardening | ✅ |
-| 🤖 **ML Security & IA Generativa** (v2.x) | Adversarial ML, MLSecOps, deepfake/voice/text detection, governança | ✅ |
+> Todo o conteúdo é destinado a estudo e execução controlada com dados sintéticos ou ambientes isolados.
 
-Todo o código é **executável e testado de ponta a ponta** (`20/20` testes E2E passando). Os ataques e defesas de ML são implementados **do zero em NumPy/scikit-learn** — sem caixas-pretas — para deixar cada técnica transparente e auditável.
+## Problema abordado
 
-> ⚠️ **Uso educacional.** Toda execução ocorre em ambiente isolado, com dados sintéticos ou VMs Host-Only. Nenhum sistema real é alvo.
+Modelos podem apresentar boa accuracy convencional e ainda falhar sob condições adversariais. Uma avaliação defensável precisa responder, com evidência reproduzível:
 
----
+- o atacante possui labels, scores ou acesso aos gradientes?
+- a perturbação respeita realmente a norma e o epsilon definidos?
+- a robustez persiste com mais steps, restarts e ataques por transferência?
+- drift observado representa mudança legítima ou abuso deliberado?
+- a API limita harvesting e reduz a informação devolvida?
+- existe fallback, quarantine e rollback quando o modelo é comprometido?
 
-## 🎯 Por que este projeto existe
+O CyberLab transforma essas perguntas em código, testes, notebooks e métricas.
 
-A superfície de ataque mudou. Hoje o alvo não é só a rede — é **o modelo de ML que decide crédito, fraude e malware**, e o **conteúdo sintético** (deepfake, voz clonada, phishing por LLM) que quebra a verificação tradicional. Casos como o **deepfake da Arup (US$ 25 milhões)** e o **vishing com voz clonada na LastPass** mostram que controles clássicos não seguram esse vetor.
+## Arquitetura
 
-CyberLab v2 demonstra, na prática, **como esses ataques funcionam e como defender** — cobrindo as principais áreas técnicas de **ML Security** e **Prevenção a Fraude / Governança de Risco de IA**.
+~~~text
+DATA / REQUEST
+      |
+      v
+SCHEMA + RANGE VALIDATION
+      |
+      v
+AUTH + QUERY BUDGET + RATE LIMIT
+      |
+      v
+ADVERSARIAL / DRIFT / EXTRACTION SIGNALS
+      |
+      v
+RISK CORRELATION + POLICY
+      |
+      +-----------+------------+-------------+
+      |           |            |             |
+    ALLOW      CHALLENGE    FALLBACK     QUARANTINE
+      |                                      |
+      v                                      v
+  INFERENCE                              INCIDENT
+      |                                      |
+      v                                      v
+MINIMIZED OUTPUT                      ROLLBACK / RESTORE
+      |
+      v
+HASHED TELEMETRY + AUDIT
+~~~
 
-📖 A narrativa completa está em [`docs/06_storytelling_v2.md`](docs/06_storytelling_v2.md).
+O CLI, os módulos Python e a API constituem a fonte de verdade. Os notebooks apenas orquestram essas APIs para ensino e reprodução dos experimentos.
 
----
+## Capacidades implementadas
 
-## 🧩 Capacidades Técnicas
+### Red Team — ataques
 
-### 🤖 ML Security (Adversarial ML)
+| Capacidade | Implementação | Evidência |
+|---|---|---|
+| FGSM white-box | Autograd PyTorch e gradiente direto da loss | [whitebox_attacks_torch.py](scripts/python/ml_security/whitebox_attacks_torch.py) |
+| PGD white-box | Random start, steps iterativos e projeção L∞/L2 | [whitebox_attacks_torch.py](scripts/python/ml_security/whitebox_attacks_torch.py) |
+| Gradient estimation | Diferenças finitas sobre scores, corretamente classificada | [adversarial_attacks.py](scripts/python/ml_security/adversarial_attacks.py) |
+| Decision-based | Observa somente labels e respeita query budget | [blackbox_attacks.py](scripts/python/ml_security/blackbox_attacks.py) |
+| Score-based | Usa probabilidades sem acesso ao modelo interno | [blackbox_attacks.py](scripts/python/ml_security/blackbox_attacks.py) |
+| Transfer-based | Treina surrogate e mede fidelity/transfer rate | [blackbox_attacks.py](scripts/python/ml_security/blackbox_attacks.py) |
+| Data poisoning | Label flipping e backdoor | [poisoning_attacks.py](scripts/python/ml_security/poisoning_attacks.py) |
+| Clean-label poisoning | Feature collision com preservação de labels | [clean_label_poisoning.py](scripts/python/ml_security/clean_label_poisoning.py) |
+| Model extraction | Clone por consultas e fidelity | [model_extraction.py](scripts/python/ml_security/model_extraction.py) |
+| Privacy attacks | Membership inference e model inversion | [model_extraction.py](scripts/python/ml_security/model_extraction.py), [model_inversion.py](scripts/python/ml_security/model_inversion.py) |
 
-| Técnica | Módulo | O que faz |
-|---------|--------|-----------|
-| **Data Poisoning** | [`poisoning_attacks.py`](scripts/python/ml_security/poisoning_attacks.py) | Label flipping (indiscriminado/direcionado), backdoor/trojan |
-| **Clean-Label Poisoning** | [`clean_label_poisoning.py`](scripts/python/ml_security/clean_label_poisoning.py) | **Feature collision** (Poison Frogs) — poison com rótulo correto que flipa o alvo |
-| **Evasão FGSM + PGD** | [`adversarial_attacks.py`](scripts/python/ml_security/adversarial_attacks.py) | Exemplos adversariais white-box + ataque black-box por queries |
-| **Transferability + Benchmark** | [`adversarial_transferability.py`](scripts/python/ml_security/adversarial_transferability.py) | Transferência entre modelos + curva de robustez + **gradient masking** |
-| **Defesa Adversarial** | [`adversarial_defense.py`](scripts/python/ml_security/adversarial_defense.py) | Adversarial training, defensive distillation, detecção de anomalia, ensemble |
-| **Watermarking + Activation Clustering** | [`model_watermarking.py`](scripts/python/ml_security/model_watermarking.py) | Prova de propriedade (anti-extração) + detecção de poisoning por clustering |
-| **Model Extraction** | [`model_extraction.py`](scripts/python/ml_security/model_extraction.py) | Clonagem de modelo via API + membership inference |
-| **Model Inversion** | [`model_inversion.py`](scripts/python/ml_security/model_inversion.py) | Reconstrução de dado de treino (privacy leakage) |
-| **Differential Privacy** | [`differential_privacy.py`](scripts/python/ml_security/differential_privacy.py) | **DP-SGD do zero** com clipping + ruído; mede trade-off ε vs utilidade |
-| **MLSecOps** | [`mlsecops_monitoring.py`](scripts/python/ml_security/mlsecops_monitoring.py) | Drift detection, malicious drift, audit log, incident response |
+### Blue Team — defesa e avaliação
 
-### 🎭 Detecção de Mídia Sintética & Forense
+| Capacidade | Implementação |
+|---|---|
+| Auditoria de gradient masking | FGSM × PGD, epsilon curve, step curve, restarts, transfer e black-box |
+| Adversarial training | Retreino com amostras adversariais |
+| Differential privacy | DP-SGD didático com clipping e ruído |
+| Watermarking | Evidência de propriedade contra extração |
+| Activation clustering | Detecção de agrupamentos associados a poisoning |
+| Input anomaly detection | Identificação de entradas fora do comportamento esperado |
+| Framework parity | Adapters opcionais para ART e Foolbox |
 
-| Técnica | Módulo | O que faz |
-|---------|--------|-----------|
-| **Voice Cloning (features)** | [`audio_detector.py`](scripts/python/synthetic_media/audio_detector.py) | **MFCC/librosa reais** — centroid, bandwidth, ZCR discriminam voz sintética |
-| **Anti-Spoofing (classificador)** | [`antispoofing.py`](scripts/python/synthetic_media/antispoofing.py) | Classificador **estilo ASVspoof** treinado em MFCC + **callback verification** |
-| **Deepfake de Vídeo** | [`deepfake_video.py`](scripts/python/synthetic_media/deepfake_video.py) | Análise **temporal** (eye-blink, flicker) + proveniência **C2PA** |
-| **Forense de Imagem** | [`image_forensics.py`](scripts/python/synthetic_media/image_forensics.py) | **ELA (Error Level Analysis)** localizado + análise de ruído + EXIF |
-| **Phishing por IA** | [`phishing_detector.py`](scripts/python/synthetic_media/phishing_detector.py) | **Burstiness**, typosquatting/homoglyph de URL, **LLM-as-judge** |
-| **Texto por LLM** | [`text_detector.py`](scripts/python/synthetic_media/text_detector.py) | Perplexidade, estilometria, padrões típicos de LLM |
-| **Cadeia de Custódia** | [`forensic_evidence.py`](scripts/python/synthetic_media/forensic_evidence.py) | Chain of custody, hash SHA-256, laudo forense defensável |
+A auditoria não declara um modelo robusto porque um ataque falhou. Ela agrega sinais independentes e registra quando BPDA ou EOT são necessários.
 
-### ⚖️ Governança de Risco de IA
+### MLSecOps — operação segura
 
-| Framework | Módulo | O que faz |
-|-----------|--------|-----------|
-| **NIST AI RMF + ISO/IEC 42001** | [`ai_risk_assessment.py`](scripts/python/governance/ai_risk_assessment.py) | Assessment executável de maturidade + relatório priorizado |
-| **Controles Antifraude + EU AI Act** | [`antifraud_controls.py`](scripts/python/governance/antifraud_controls.py) | Dupla autorização, hold bancário, callback + classificação de risco EU AI Act |
+- validação de schema, dimensionalidade, finitude e intervalo;
+- correlação entre drift, query rate, OOD, suspeita adversarial e extração;
+- separação explícita entre drift legítimo e possível ataque;
+- estados NORMAL, SUSPICIOUS, DEGRADED, COMPROMISED e ROLLBACK;
+- políticas allow, challenge, fallback e quarantine;
+- incidentes e rollback auditáveis;
+- adapters opcionais para Evidently e whylogs;
+- telemetria minimizada, sem persistir vetores crus por padrão.
 
-### 🔓 Segurança Clássica (v1.0)
+## API de inferência endurecida
 
-Reconhecimento (Nmap) · Brute force (FTP/SMB/DVWA) · Ransomware & keylogger simulados · Análise de logs · Hardening & validação.
+O serviço FastAPI fica em [services/model_api](services/model_api) e falha fechado quando CYBERLAB_API_KEY não está configurada.
 
----
+Controles implementados:
 
-## 📊 Dashboard
+- autenticação centralizada por dependency;
+- comparação constant-time da credencial;
+- rate limiting associado à API key autenticada;
+- modelos Pydantic estritos e response model explícito;
+- TrustedHost configurável;
+- output full, rounded ou label-only;
+- query diversity e extraction suspicion;
+- identificadores UUID e hashes para clientes/entradas;
+- documentação OpenAPI desabilitada em produção.
 
-Painel visual consolidado gerado por [`scripts/generate_dashboard.py`](scripts/generate_dashboard.py):
+~~~powershell
+$env:CYBERLAB_API_KEY = "defina-um-segredo-local"
+$env:CYBERLAB_ALLOWED_HOSTS = "localhost,127.0.0.1"
+py -3.10 -m uvicorn services.model_api.app:app
+~~~
 
-![Dashboard](results/dashboard_ml_security.png)
+O limiter atual é em memória e foi projetado para o laboratório. Uma implantação horizontal precisa de armazenamento compartilhado e limites adicionais no gateway ou proxy.
 
-*Trade-off de privacidade DP-SGD · Robustez adversarial · Detecção de voz clonada · Model inversion · Maturidade de governança.*
+## Métricas padronizadas
 
----
+| Domínio | Métricas |
+|---|---|
+| Evasion | clean accuracy, robust accuracy, ASR, confidence drop, L2 e L∞ |
+| Black-box | query count, queries to success, transfer rate e surrogate fidelity |
+| Poisoning | poisoned accuracy, poison fraction, targeted success e backdoor ASR |
+| Extraction | clone accuracy, target accuracy, fidelity e efficiency |
+| Privacy | attack accuracy, ROC AUC, membership advantage e inversion similarity |
+| Drift | drift score, score por feature e alert level |
+| MLSecOps | risk score, incident type, action, model version e rollback version |
 
-## 🗺️ Frameworks de Referência
+## Benchmark reproduzível
 
-| Framework | Aplicação no projeto |
-|-----------|----------------------|
-| **MITRE ATLAS** | Threat modeling do pipeline de ML — [`docs/04`](docs/04_ml_security_threat_model.md) |
-| **OWASP ML Security Top 10** | Matriz de riscos implementados — [`docs/07`](docs/07_owasp_ml_security_top10.md) |
-| **NIST AI RMF 1.0** | Assessment de governança (GOVERN/MAP/MEASURE/MANAGE) |
-| **ISO/IEC 42001** | Controles de AI Management System |
-| **EU AI Act** | Classificação de risco (proibido/alto/limitado/mínimo) — [`antifraud_controls.py`](scripts/python/governance/antifraud_controls.py) |
+O benchmark usa o mesmo modelo e o mesmo conjunto de dados para a implementação própria e para os adapters de referência.
 
----
+Resultado nativo validado localmente:
 
-## 🚀 Quickstart
+| Métrica | Valor |
+|---|---:|
+| Clean accuracy | 1.00 |
+| Robust accuracy | 0.25 |
+| Attack success rate | 0.75 |
+| L2 médio | 0.4243 |
+| L∞ médio | 0.3000 |
 
-```bash
-# 1. Instalar dependências (testado em Python 3.10)
-pip install -r requirements.txt
+ART e Foolbox são dependências opcionais. Quando não estão instalados, o relatório registra explicitamente a indisponibilidade em vez de simular paridade.
 
-# 2. Rodar a suite de testes end-to-end (20 testes)
-python scripts/test_e2e_ml_security.py
+## Quickstart
 
-# 3. Gerar o dashboard visual
-python scripts/generate_dashboard.py
+Recomendado: Python 3.10.
 
-# 4. Rodar um módulo isolado (cada um tem demo standalone)
-python scripts/python/ml_security/differential_privacy.py
-python scripts/python/synthetic_media/audio_detector.py
-python scripts/python/governance/ai_risk_assessment.py
-```
+~~~powershell
+git clone https://github.com/Yuri-Fernando/CyberLab.git
+cd CyberLab
 
-Cada módulo roda **standalone** e gera resultados em `results/`.
+py -3.10 -m pip install -r requirements.txt
+py -3.10 -m pytest tests -q
+py -3.10 scripts/test_e2e_ml_security.py
+~~~
 
----
+Dependências opcionais:
 
-## 📈 Resultados Reais (reproduzíveis)
+~~~powershell
+py -3.10 -m pip install -r requirements-adversarial.txt
+py -3.10 -m pip install -r requirements-observability.txt
+~~~
 
-```
-DP-SGD Trade-off:        ε=8.99→acc=0.82  ...  ε=1.12→acc=0.82   (privacidade ↑, utilidade estável)
-Model Inversion:         cos_sim=0.99 vs média real da classe    (HIGH leakage detectado)
-Model Extraction:        97% de agreement com modelo-alvo         (clonagem bem-sucedida)
-Voice Cloning:           natural=0.00 · sintético=1.00            (discriminação perfeita)
-Image Forensics (ELA):   adulterada=0.70 · limpa=0.25             (splicing detectado)
-Governança NIST AI RMF:  maturidade 3.0/5 (Definido)
-```
+Execução de um módulo isolado:
 
----
+~~~powershell
+py -3.10 scripts/python/ml_security/differential_privacy.py
+py -3.10 scripts/python/ml_security/model_extraction.py
+py -3.10 scripts/generate_upgrade_scorecard.py
+~~~
 
-## 📁 Estrutura
+## Notebooks
 
-```
+Os notebooks chamam os módulos de produção e foram executados de ponta a ponta:
+
+1. [Evasion white-box: FGSM e PGD](notebooks/11_evasion_fgsm_pgd.ipynb)
+2. [Poisoning e backdoor](notebooks/12_poisoning_backdoor.ipynb)
+3. [Auditoria de gradient masking](notebooks/13_gradient_masking.ipynb)
+4. [MLSecOps e resposta a incidentes](notebooks/14_mlsecops_incident_response.ipynb)
+5. [Benchmark ART e Foolbox](notebooks/15_art_foolbox_benchmark.ipynb)
+
+## Validação local
+
+| Verificação | Resultado |
+|---|---|
+| Testes do upgrade | 10/10 passando |
+| Suite E2E histórica | 20/20 passando |
+| Ruff nos módulos novos | Aprovado |
+| Compileall | Aprovado |
+| Notebooks 11–15 | Executados integralmente |
+| Serialização dos relatórios | JSON válido |
+| Git diff check | Sem erros |
+
+A suíte E2E também foi corrigida para serializar escalares NumPy corretamente no relatório final.
+
+## Estrutura do repositório
+
+~~~text
 CyberLab/
 ├── scripts/
 │   ├── python/
-│   │   ├── ml_security/          # 7 módulos: poisoning, FGSM/PGD, defense,
-│   │   │                         #   extraction, inversion, DP-SGD, MLSecOps
-│   │   ├── synthetic_media/      # voz (MFCC), imagem (ELA), texto (LLM), forense
-│   │   ├── governance/           # NIST AI RMF + ISO/IEC 42001
-│   │   ├── scanner.py            # v1.0: Nmap
-│   │   ├── brute_force.py        # v1.0: Medusa
-│   │   ├── logs_analyzer.py      # v1.0: análise de logs
-│   │   └── malware/              # v1.0: ransomware + keylogger simulados
-│   ├── test_e2e_ml_security.py   # suite E2E (20 testes)
-│   └── generate_dashboard.py     # dashboard visual
-├── notebooks/                    # 10 notebooks do laboratório clássico
-├── docs/                         # 7 documentos técnicos
-├── results/                      # saídas geradas (JSON, PNG)
-└── requirements.txt
-```
+│   │   ├── ml_security/       # ataques, defesas, benchmarks e MLSecOps
+│   │   ├── synthetic_media/   # voz, imagem, vídeo, texto e forense
+│   │   ├── governance/        # NIST AI RMF, ISO 42001 e antifraude
+│   │   └── malware/           # simulações educacionais controladas
+│   ├── test_e2e_ml_security.py
+│   └── generate_upgrade_scorecard.py
+├── services/
+│   └── model_api/             # API FastAPI endurecida
+├── tests/                     # testes determinísticos do upgrade
+├── notebooks/                 # trilha clássica + laboratórios 11–15
+├── docs/                      # threat models, matrizes e arquitetura
+├── results/                   # dashboard versionado; demais outputs ignorados
+├── requirements.txt
+├── requirements-adversarial.txt
+└── requirements-observability.txt
+~~~
 
----
+## Documentação técnica
 
-## 📚 Documentação
+| Documento | Conteúdo |
+|---|---|
+| [Fundamentos](docs/00_fundamentals.md) | Diferença entre GAN e Adversarial ML |
+| [Threat model](docs/04_ml_security_threat_model.md) | MITRE ATLAS aplicado ao pipeline |
+| [OWASP ML Security](docs/07_owasp_ml_security_top10.md) | Riscos e controles |
+| [Matriz adversarial](docs/08_adversarial_ml_attack_matrix.md) | Poisoning, backdoor e clean-label |
+| [Benchmark](docs/09_framework_benchmark.md) | Comparação from scratch, ART e Foolbox |
+| [Gradient masking](docs/10_gradient_masking.md) | Checks de falsa robustez |
+| [Arquitetura MLSecOps](docs/11_mlsecops_architecture.md) | Serving, policy, incidentes e rollback |
+| [ATLAS × OWASP](docs/14_atlas_owasp_crosswalk.md) | Crosswalk de TTPs, riscos e controles |
 
-| Doc | Conteúdo |
-|-----|----------|
-| [`01_metodologia.md`](docs/01_metodologia.md) | Ciclo de vida do laboratório clássico |
-| [`02_ataques_detalhes.md`](docs/02_ataques_detalhes.md) | Detalhes técnicos dos ataques |
-| [`03_defesa_estrategia.md`](docs/03_defesa_estrategia.md) | Defense in depth |
-| [`04_ml_security_threat_model.md`](docs/04_ml_security_threat_model.md) | MITRE ATLAS aplicado a ML |
-| [`05_synthetic_media_detection.md`](docs/05_synthetic_media_detection.md) | Deepfake, voice cloning, texto |
-| [`06_storytelling_v2.md`](docs/06_storytelling_v2.md) | A motivação por trás da v2.0 |
-| [`07_owasp_ml_security_top10.md`](docs/07_owasp_ml_security_top10.md) | Matriz OWASP ML Top 10 |
+## Decisões de segurança
 
----
+- nenhum segredo é versionado;
+- a API não possui credencial padrão;
+- autenticação é aplicada antes do rate limit e da inferência;
+- o cliente informado no payload não é usado como identidade de segurança;
+- payloads crus não entram no log por padrão;
+- outputs, modelos, datasets e documentos internos ficam fora do Git;
+- integrações opcionais não são apresentadas como validadas sem execução real.
 
-## 🧭 Roadmap
+## Limites conhecidos
 
-- **v2.1** ✅ ML Security completo (FGSM/PGD, extraction, inversion, DP-SGD, MLSecOps), voz/imagem forense, governança, dashboard, testes E2E
-- **v2.2** ✅ Clean-label poisoning, transferability + gradient masking, watermarking + activation clustering, anti-spoofing (ASVspoof), deepfake de vídeo + C2PA, phishing (URL/LLM-as-judge), controles antifraude + EU AI Act — **20/20 testes**
-- **v2.3** ⏳ Notebooks Jupyter por módulo · integração Evidently/whylogs · fine-tuning de detectores
-- **v3.0** 🔮 Laboratório interativo com VMs · integração cloud
+Ainda não foram validados neste ambiente:
+
+- paridade executável com ART e Foolbox;
+- adapters Evidently e whylogs;
+- DP-SGD via Opacus;
+- execução GPU/CUDA;
+- serving distribuído e rate limiter compartilhado;
+- Docker, Prometheus/Grafana e cloud MLaaS;
+- model registry, assinaturas, proveniência e ML-BOM;
+- policy engines OPA/Cedar e aprovação humana para ações críticas.
+
+Esses itens permanecem no roadmap e não são apresentados como capacidades concluídas.
+
+## Roadmap
+
+### v2.3 — núcleo adversarial e MLSecOps
+
+- white-box PyTorch;
+- black-box por threat model;
+- gradient masking audit;
+- API endurecida;
+- incident response;
+- notebooks e testes reproduzíveis.
+
+### v2.4 — supply chain e governança operacional
+
+- model registry e artifact integrity;
+- proveniência, SBOM e ML-BOM;
+- storage distribuído para rate limiting;
+- security gates de CI/CD;
+- HITL e policy engine.
+
+### v2.5 — laboratório avançado
+
+- Opacus e privacy/utility benchmark;
+- AutoAttack e RobustBench;
+- MLaaS threat lab;
+- evidence pack e desafios estruturados.
 
 ---
 
 <p align="center">
-  <em>CyberLab — projeto de portfólio em cibersegurança & ML Security</em><br>
-  <strong>⚠️ Ambiente controlado. Fins estritamente educacionais.</strong>
+  <strong>CyberLab</strong><br>
+  Segurança de modelos demonstrada com código, métricas e evidências reproduzíveis.
 </p>

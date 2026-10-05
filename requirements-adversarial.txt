@@ -1,0 +1,6 @@
+# Integrações opcionais para benchmark adversarial (Python 3.10)
+torch>=2.0
+torchvision>=0.15
+adversarial-robustness-toolbox>=1.17
+foolbox>=3.3
+eagerpy>=0.30

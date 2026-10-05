@@ -1,11 +1,28 @@
-# Environment variables
+# Secrets and local configuration
 .env
+.env/
 .env.local
 .env.*.local
+*.pem
+*.key
+*.p12
+*.pfx
 
-# Jupyter Notebook
-.ipynb_checkpoints
-*.ipynb_checkpoints
+# Internal planning, vacancy material and private notes
+CyberLab_AI_Security_Adversarial_ML_Upgrade_Plan.txt
+*_Upgrade_Plan.txt
+*Vaga*.*
+*vaga*.*
+*Interview*.*
+*interview*.*
+*Entrevista*.*
+*entrevista*.*
+*adendo*.txt
+melhoria projeto segurança.txt
+GITHUB_PROFILE_ANALYSIS_v2.txt
+MASTER_SESSION.md
+RELEASE_v2.0.0.md
+PROJETO_SUMARIO.md
 
 # Python
 __pycache__/
@@ -13,6 +30,12 @@ __pycache__/
 *$py.class
 *.so
 .Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
 build/
 develop-eggs/
 dist/
@@ -36,47 +59,55 @@ MANIFEST
 venv/
 ENV/
 env/
-.venv
+.venv/
 
-# IDE
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE and operating system
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 .DS_Store
-
-# Results and logs (but keep structure)
-results/logs/*.log
-results/*.json
-results/*.txt
-results/*.html
-# Saídas transitórias dos módulos (JSON/PNG demo, mapas ELA, etc.)
-results/ml_security/
-results/synthetic_media/
-results/forensics/
-results/governance/
-results/e2e_tests/
-# Saídas geradas ao rodar módulos fora da raiz (ex: scripts/python/results/)
-scripts/**/results/
-# Manter o dashboard consolidado (referenciado no README)
-!results/dashboard_ml_security.png
-!results/.gitkeep
-!results/logs/.gitkeep
-
-# Test files
-test_files/
-temp/
-*.tmp
-
-# OS specific
-.DS_Store
 Thumbs.db
 Desktop.ini
 
-# Notas de trabalho / rascunhos internos (não publicar)
-melhoria projeto segurança.txt
-GITHUB_PROFILE_ANALYSIS_v2.txt
-MASTER_SESSION.md
-RELEASE_v2.0.0.md
-PROJETO_SUMARIO.md
+# Logs, temporary files and local test data
+*.log
+test_files/
+temp/
+tmp/
+*.tmp
+
+# Generated results and evidence
+results/**
+!results/dashboard_ml_security.png
+!results/.gitkeep
+!results/logs/
+results/logs/**
+!results/logs/.gitkeep
+scripts/**/results/
+
+# Models, datasets and binary artifacts
+models/
+artifacts/
+data/
+*.pt
+*.pth
+*.onnx
+*.joblib
+*.pkl
+*.pickle
+*.h5
+*.ckpt
+*.npy
+*.npz
+*.parquet
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz

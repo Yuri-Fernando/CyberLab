@@ -9,7 +9,7 @@ Transforma dois frameworks de governança em uma ferramenta executável que:
 
 Uso real: rode contra um projeto de ML respondendo aos controles, e obtenha
 um relatório defensável de maturidade de governança — o tipo de artefato que
-uma vaga de governança de risco de IA espera ver.
+adequado a auditorias, revisões de risco e acompanhamento de controles.
 """
 
 import json
