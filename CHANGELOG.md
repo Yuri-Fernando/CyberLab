@@ -2,6 +2,36 @@
 
 Todas as alterações significativas neste projeto serão documentadas neste arquivo.
 
+## [2.4.0-dev] — 2026-10-07
+
+### Adicionado
+- `cloud_security/`: labs Terraform mínimos e propositalmente mal configurados
+  para AWS, Azure e GCP (storage público, rede aberta a 0.0.0.0/0, IAM/role
+  superprivilegiado, dados em repouso sem criptografia). Nunca aplicados
+  (`terraform apply`) contra conta cloud real.
+- Checkov 3.2.459 e Trivy 0.75.0 (`trivy config`) rodados de verdade contra
+  os 3 labs, sem nenhuma credencial cloud — 104 findings reais coletados e
+  versionados em `cloud_security/results/`.
+- `cloud_security/mapping/`: mapeamento declarativo de findings reais para
+  controles de NIST CSF 2.0 (funções/categorias oficiais), ISO/IEC
+  27001:2022 Anexo A e LGPD (artigos reais). 90/104 findings mapeados; os
+  14 restantes ficam sem categoria em vez de receber um controle adivinhado.
+- 19 novos testes em `tests/cloud_security/`: 7 rodam Checkov/Trivy de
+  verdade contra os labs (regressão — detectam se um misconfig proposital
+  for corrigido/removido do Terraform), 12 validam parsing dos outputs
+  reais e o mapeamento (sem mock do comportamento central).
+
+### Limitações conhecidas (documentadas, não fingidas)
+- **Prowler**: tentativa de instalação (`prowler-cloud` 5.44.0) causou
+  conflito real de dependências neste ambiente Python compartilhado
+  (upgrade parcial de botocore/s3transfer quebrou temporariamente o
+  Checkov). O ambiente foi restaurado e a instalação do Prowler foi
+  abandonada — Prowler não é usado em nenhum resultado deste módulo.
+- **ScoutSuite** e **Steampipe**: ambos dependem de credenciais de conta
+  cloud real para coletar estado via API; sem conta real disponível,
+  nenhum dos dois foi instalado ou usado. Ver `cloud_security/README.md`
+  para detalhes completos de cada limitação.
+
 ## [2.3.0-dev] — 2026-10-05
 
 ### Adicionado
