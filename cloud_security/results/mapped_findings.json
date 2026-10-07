@@ -1,0 +1,2181 @@
+{
+  "disclaimer": "Mapeamento declarativo findings->controles conhecidos. NAO e uma certificacao, auditoria formal ou atestado de conformidade com NIST CSF 2.0, ISO/IEC 27001 ou LGPD. Exige revisao humana.",
+  "total_findings": 104,
+  "mapped_findings": 90,
+  "unmapped_findings": 14,
+  "findings_by_cloud": {
+    "aws": 56,
+    "azure": 30,
+    "gcp": 18
+  },
+  "findings_by_category": {
+    "public_storage_exposure": 21,
+    "open_network_ingress": 17,
+    "excessive_iam_privilege": 11,
+    "resource_lifecycle_governance": 15,
+    "missing_logging_monitoring": 8,
+    "unencrypted_data_at_rest": 12,
+    "publicly_accessible_database": 3,
+    "weak_transport_security": 3
+  },
+  "findings": [
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_53",
+      "check_name": "Ensure S3 bucket has block public ACLS enabled",
+      "resource": "aws_s3_bucket_public_access_block.public_data_block",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_54",
+      "check_name": "Ensure S3 bucket has block public policy enabled",
+      "resource": "aws_s3_bucket_public_access_block.public_data_block",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_55",
+      "check_name": "Ensure S3 bucket has ignore public ACLs enabled",
+      "resource": "aws_s3_bucket_public_access_block.public_data_block",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_56",
+      "check_name": "Ensure S3 bucket has 'restrict_public_buckets' enabled",
+      "resource": "aws_s3_bucket_public_access_block.public_data_block",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_23",
+      "check_name": "Ensure every security group and rule has a description",
+      "resource": "aws_security_group.open_ssh",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_382",
+      "check_name": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
+      "resource": "aws_security_group.open_ssh",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_24",
+      "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22",
+      "resource": "aws_security_group.open_ssh",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_25",
+      "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389",
+      "resource": "aws_security_group.open_ssh",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_62",
+      "check_name": "Ensure IAM policies that allow full \"*-*\" administrative privileges are not created",
+      "resource": "aws_iam_policy.admin_everything",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "excessive_iam_privilege",
+      "nist_csf2": [
+        "PR.AA",
+        "ID.RA"
+      ],
+      "iso_27001_2022": [
+        "A.5.15",
+        "A.5.18"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_287",
+      "check_name": "Ensure IAM policies does not allow credentials exposure",
+      "resource": "aws_iam_policy.admin_everything",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "excessive_iam_privilege",
+      "nist_csf2": [
+        "PR.AA",
+        "ID.RA"
+      ],
+      "iso_27001_2022": [
+        "A.5.15",
+        "A.5.18"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_288",
+      "check_name": "Ensure IAM policies does not allow data exfiltration",
+      "resource": "aws_iam_policy.admin_everything",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "excessive_iam_privilege",
+      "nist_csf2": [
+        "PR.AA",
+        "ID.RA"
+      ],
+      "iso_27001_2022": [
+        "A.5.15",
+        "A.5.18"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_289",
+      "check_name": "Ensure IAM policies does not allow permissions management / resource exposure without constraints",
+      "resource": "aws_iam_policy.admin_everything",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "excessive_iam_privilege",
+      "nist_csf2": [
+        "PR.AA",
+        "ID.RA"
+      ],
+      "iso_27001_2022": [
+        "A.5.15",
+        "A.5.18"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_286",
+      "check_name": "Ensure IAM policies does not allow privilege escalation",
+      "resource": "aws_iam_policy.admin_everything",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "excessive_iam_privilege",
+      "nist_csf2": [
+        "PR.AA",
+        "ID.RA"
+      ],
+      "iso_27001_2022": [
+        "A.5.15",
+        "A.5.18"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_63",
+      "check_name": "Ensure no IAM policies documents allow \"*\" as a statement's actions",
+      "resource": "aws_iam_policy.admin_everything",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "excessive_iam_privilege",
+      "nist_csf2": [
+        "PR.AA",
+        "ID.RA"
+      ],
+      "iso_27001_2022": [
+        "A.5.15",
+        "A.5.18"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_355",
+      "check_name": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
+      "resource": "aws_iam_policy.admin_everything",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "excessive_iam_privilege",
+      "nist_csf2": [
+        "PR.AA",
+        "ID.RA"
+      ],
+      "iso_27001_2022": [
+        "A.5.15",
+        "A.5.18"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_290",
+      "check_name": "Ensure IAM policies does not allow write access without constraints",
+      "resource": "aws_iam_policy.admin_everything",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "excessive_iam_privilege",
+      "nist_csf2": [
+        "PR.AA",
+        "ID.RA"
+      ],
+      "iso_27001_2022": [
+        "A.5.15",
+        "A.5.18"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_133",
+      "check_name": "Ensure that RDS instances has backup policy",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_129",
+      "check_name": "Ensure that respective logs of Amazon Relational Database Service (Amazon RDS) are enabled",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "missing_logging_monitoring",
+      "nist_csf2": [
+        "DE.CM",
+        "DE.AE"
+      ],
+      "iso_27001_2022": [
+        "A.8.16"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_226",
+      "check_name": "Ensure DB instance gets all minor upgrades automatically",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_16",
+      "check_name": "Ensure all data stored in the RDS is securely encrypted at rest",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "unencrypted_data_at_rest",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_118",
+      "check_name": "Ensure that enhanced monitoring is enabled for Amazon RDS instances",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_161",
+      "check_name": "Ensure RDS database has IAM authentication enabled",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_293",
+      "check_name": "Ensure that AWS database instances have deletion protection enabled",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_353",
+      "check_name": "Ensure that RDS instances have performance insights enabled",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_157",
+      "check_name": "Ensure that RDS instances have Multi-AZ enabled",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_17",
+      "check_name": "Ensure all data stored in RDS is not publicly accessible",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "publicly_accessible_database",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.IR"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.8.20"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 48"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV2_AWS_30",
+      "check_name": "Ensure Postgres RDS as aws_db_instance has Query Logging enabled",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV2_AWS_60",
+      "check_name": "Ensure RDS instance with copy tags to snapshots is enabled",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV2_AWS_62",
+      "check_name": "Ensure S3 buckets should have event notifications enabled",
+      "resource": "aws_s3_bucket.public_data",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV2_AWS_61",
+      "check_name": "Ensure that an S3 bucket has a lifecycle configuration",
+      "resource": "aws_s3_bucket.public_data",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_18",
+      "check_name": "Ensure the S3 bucket has access logging enabled",
+      "resource": "aws_s3_bucket.public_data",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "missing_logging_monitoring",
+      "nist_csf2": [
+        "DE.CM",
+        "DE.AE"
+      ],
+      "iso_27001_2022": [
+        "A.8.16"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_144",
+      "check_name": "Ensure that S3 bucket has cross-region replication enabled",
+      "resource": "aws_s3_bucket.public_data",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV2_AWS_5",
+      "check_name": "Ensure that Security Groups are attached to another resource",
+      "resource": "aws_security_group.open_ssh",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_145",
+      "check_name": "Ensure that S3 buckets are encrypted with KMS by default",
+      "resource": "aws_s3_bucket.public_data",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "unencrypted_data_at_rest",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_20",
+      "check_name": "S3 Bucket has an ACL defined which allows public READ access.",
+      "resource": "aws_s3_bucket.public_data",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV2_AWS_6",
+      "check_name": "Ensure that S3 bucket has a Public Access block",
+      "resource": "aws_s3_bucket.public_data",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV_AWS_21",
+      "check_name": "Ensure all data stored in the S3 bucket have versioning enabled",
+      "resource": "aws_s3_bucket.public_data",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "aws",
+      "check_id": "CKV2_AWS_40",
+      "check_name": "Ensure AWS IAM policy does not allow full IAM privileges",
+      "resource": "aws_iam_policy.admin_everything",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "excessive_iam_privilege",
+      "nist_csf2": [
+        "PR.AA",
+        "ID.RA"
+      ],
+      "iso_27001_2022": [
+        "A.5.15",
+        "A.5.18"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0077",
+      "check_name": "RDS Cluster and RDS instance should have backup retention longer than default 1 day",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "main.tf",
+      "severity": "MEDIUM",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0080",
+      "check_name": "RDS encryption has not been enabled at a DB Instance level.",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "main.tf",
+      "severity": "HIGH",
+      "mapped": true,
+      "category": "unencrypted_data_at_rest",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0086",
+      "check_name": "S3 Access block should block public ACL",
+      "resource": "aws_s3_bucket_public_access_block.public_data_block",
+      "file_path": "main.tf",
+      "severity": "HIGH",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0087",
+      "check_name": "S3 Access block should block public policy",
+      "resource": "aws_s3_bucket_public_access_block.public_data_block",
+      "file_path": "main.tf",
+      "severity": "HIGH",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0089",
+      "check_name": "S3 Bucket Logging",
+      "resource": "aws_s3_bucket.public_data",
+      "file_path": "main.tf",
+      "severity": "LOW",
+      "mapped": true,
+      "category": "missing_logging_monitoring",
+      "nist_csf2": [
+        "DE.CM",
+        "DE.AE"
+      ],
+      "iso_27001_2022": [
+        "A.8.16"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0090",
+      "check_name": "S3 Data should be versioned",
+      "resource": "aws_s3_bucket_versioning.public_data_versioning",
+      "file_path": "main.tf",
+      "severity": "MEDIUM",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0091",
+      "check_name": "S3 Access Block should Ignore Public ACL",
+      "resource": "aws_s3_bucket_public_access_block.public_data_block",
+      "file_path": "main.tf",
+      "severity": "HIGH",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0092",
+      "check_name": "S3 Buckets not publicly accessible through ACL.",
+      "resource": "aws_s3_bucket_acl.public_data_acl",
+      "file_path": "main.tf",
+      "severity": "HIGH",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0093",
+      "check_name": "S3 Access block should restrict public bucket to limit access",
+      "resource": "aws_s3_bucket_public_access_block.public_data_block",
+      "file_path": "main.tf",
+      "severity": "HIGH",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0104",
+      "check_name": "A security group rule should not allow unrestricted egress to any IP address.",
+      "resource": "aws_security_group.open_ssh",
+      "file_path": "main.tf",
+      "severity": "CRITICAL",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0107",
+      "check_name": "Security groups should not allow unrestricted ingress to SSH or RDP from any IP address.",
+      "resource": "aws_security_group.open_ssh",
+      "file_path": "main.tf",
+      "severity": "HIGH",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0107",
+      "check_name": "Security groups should not allow unrestricted ingress to SSH or RDP from any IP address.",
+      "resource": "aws_security_group.open_ssh",
+      "file_path": "main.tf",
+      "severity": "HIGH",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0124",
+      "check_name": "Missing description for security group rule.",
+      "resource": "aws_security_group.open_ssh",
+      "file_path": "main.tf",
+      "severity": "LOW",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0132",
+      "check_name": "S3 encryption should use Customer Managed Keys",
+      "resource": "aws_s3_bucket.public_data",
+      "file_path": "main.tf",
+      "severity": "HIGH",
+      "mapped": true,
+      "category": "unencrypted_data_at_rest",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0133",
+      "check_name": "Enable Performance Insights to detect potential problems",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "main.tf",
+      "severity": "LOW",
+      "mapped": true,
+      "category": "missing_logging_monitoring",
+      "nist_csf2": [
+        "DE.CM",
+        "DE.AE"
+      ],
+      "iso_27001_2022": [
+        "A.8.16"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0176",
+      "check_name": "RDS IAM Database Authentication Disabled",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "main.tf",
+      "severity": "MEDIUM",
+      "mapped": true,
+      "category": "publicly_accessible_database",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.IR"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.8.20"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 48"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0177",
+      "check_name": "RDS Deletion Protection Disabled",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "main.tf",
+      "severity": "MEDIUM",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "aws",
+      "check_id": "AWS-0180",
+      "check_name": "RDS Publicly Accessible",
+      "resource": "aws_db_instance.unencrypted_public_db",
+      "file_path": "main.tf",
+      "severity": "HIGH",
+      "mapped": true,
+      "category": "publicly_accessible_database",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.IR"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.8.20"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 48"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV_AZURE_59",
+      "check_name": "Ensure that Storage accounts disallow public access",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV_AZURE_33",
+      "check_name": "Ensure Storage logging is enabled for Queue service for read, write and delete requests",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "missing_logging_monitoring",
+      "nist_csf2": [
+        "DE.CM",
+        "DE.AE"
+      ],
+      "iso_27001_2022": [
+        "A.8.16"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV_AZURE_44",
+      "check_name": "Ensure Storage Account is using the latest version of TLS encryption",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "weak_transport_security",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV_AZURE_206",
+      "check_name": "Ensure that Storage Accounts use replication",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV_AZURE_190",
+      "check_name": "Ensure that Storage blobs restrict public access",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV_AZURE_9",
+      "check_name": "Ensure that RDP access is restricted from the internet",
+      "resource": "azurerm_network_security_group.open_nsg",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV_AZURE_10",
+      "check_name": "Ensure that SSH access is restricted from the internet",
+      "resource": "azurerm_network_security_group.open_nsg",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV_AZURE_189",
+      "check_name": "Ensure that Azure Key Vault disables public network access",
+      "resource": "azurerm_key_vault.no_soft_delete",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV_AZURE_109",
+      "check_name": "Ensure that key vault allows firewall rules settings",
+      "resource": "azurerm_key_vault.no_soft_delete",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "unencrypted_data_at_rest",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV_AZURE_110",
+      "check_name": "Ensure that key vault enables purge protection",
+      "resource": "azurerm_key_vault.no_soft_delete",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "unencrypted_data_at_rest",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV_AZURE_42",
+      "check_name": "Ensure the key vault is recoverable",
+      "resource": "azurerm_key_vault.no_soft_delete",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "unencrypted_data_at_rest",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV2_AZURE_32",
+      "check_name": "Ensure private endpoint is configured to key vault",
+      "resource": "azurerm_key_vault.no_soft_delete",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV2_AZURE_40",
+      "check_name": "Ensure storage account is not configured with Shared Key authorization",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV2_AZURE_47",
+      "check_name": "Ensure storage account is configured without blob anonymous access",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV2_AZURE_33",
+      "check_name": "Ensure storage account is configured with private endpoint",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": false,
+      "category": null,
+      "nist_csf2": [],
+      "iso_27001_2022": [],
+      "lgpd": []
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV2_AZURE_41",
+      "check_name": "Ensure storage account is configured with SAS expiration policy",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "azure",
+      "check_id": "CKV2_AZURE_1",
+      "check_name": "Ensure storage for critical data are encrypted with Customer Managed Key",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "unencrypted_data_at_rest",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "azure",
+      "check_id": "AZU-0011",
+      "check_name": "The minimum TLS version for Storage Accounts should be TLS1_2 or higher",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "main.tf",
+      "severity": "CRITICAL",
+      "mapped": true,
+      "category": "weak_transport_security",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "azure",
+      "check_id": "AZU-0012",
+      "check_name": "The default action on Storage account network rules should be set to deny",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "main.tf",
+      "severity": "CRITICAL",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "azure",
+      "check_id": "AZU-0013",
+      "check_name": "Key vault should have the network acl block specified",
+      "resource": "azurerm_key_vault.no_soft_delete",
+      "file_path": "main.tf",
+      "severity": "CRITICAL",
+      "mapped": true,
+      "category": "unencrypted_data_at_rest",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "azure",
+      "check_id": "AZU-0016",
+      "check_name": "Key vault should have purge protection enabled",
+      "resource": "azurerm_key_vault.no_soft_delete",
+      "file_path": "main.tf",
+      "severity": "MEDIUM",
+      "mapped": true,
+      "category": "unencrypted_data_at_rest",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "azure",
+      "check_id": "AZU-0047",
+      "check_name": "A security group rule should not allow unrestricted ingress from any IP address.",
+      "resource": "azurerm_network_security_group.open_nsg",
+      "file_path": "main.tf",
+      "severity": "CRITICAL",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "azure",
+      "check_id": "AZU-0047",
+      "check_name": "A security group rule should not allow unrestricted ingress from any IP address.",
+      "resource": "azurerm_network_security_group.open_nsg",
+      "file_path": "main.tf",
+      "severity": "CRITICAL",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "azure",
+      "check_id": "AZU-0048",
+      "check_name": "A security group should not allow unrestricted ingress to the RDP port from any IP address.",
+      "resource": "azurerm_network_security_group.open_nsg",
+      "file_path": "main.tf",
+      "severity": "CRITICAL",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "azure",
+      "check_id": "AZU-0050",
+      "check_name": "Security group should not allow unrestricted ingress to SSH port from any IP address.",
+      "resource": "azurerm_network_security_group.open_nsg",
+      "file_path": "main.tf",
+      "severity": "CRITICAL",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "azure",
+      "check_id": "AZU-0056",
+      "check_name": "Storage account should have blob soft delete enabled",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "main.tf",
+      "severity": "MEDIUM",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "azure",
+      "check_id": "AZU-0057",
+      "check_name": "Storage account should have logging enabled",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "main.tf",
+      "severity": "MEDIUM",
+      "mapped": true,
+      "category": "missing_logging_monitoring",
+      "nist_csf2": [
+        "DE.CM",
+        "DE.AE"
+      ],
+      "iso_27001_2022": [
+        "A.8.16"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "azure",
+      "check_id": "AZU-0058",
+      "check_name": "Storage account should use geo-redundant replication",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "main.tf",
+      "severity": "LOW",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "azure",
+      "check_id": "AZU-0059",
+      "check_name": "Storage account should have secure transfer and minimum TLS version configured",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "main.tf",
+      "severity": "HIGH",
+      "mapped": true,
+      "category": "weak_transport_security",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "azure",
+      "check_id": "AZU-0061",
+      "check_name": "Storage account should have infrastructure encryption enabled",
+      "resource": "azurerm_storage_account.public_storage",
+      "file_path": "main.tf",
+      "severity": "MEDIUM",
+      "mapped": true,
+      "category": "unencrypted_data_at_rest",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "gcp",
+      "check_id": "CKV_GCP_62",
+      "check_name": "Bucket should log access",
+      "resource": "google_storage_bucket.public_bucket",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "missing_logging_monitoring",
+      "nist_csf2": [
+        "DE.CM",
+        "DE.AE"
+      ],
+      "iso_27001_2022": [
+        "A.8.16"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "gcp",
+      "check_id": "CKV_GCP_78",
+      "check_name": "Ensure Cloud storage has versioning enabled",
+      "resource": "google_storage_bucket.public_bucket",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "gcp",
+      "check_id": "CKV_GCP_29",
+      "check_name": "Ensure that Cloud Storage buckets have uniform bucket-level access enabled",
+      "resource": "google_storage_bucket.public_bucket",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "gcp",
+      "check_id": "CKV_GCP_114",
+      "check_name": "Ensure public access prevention is enforced on Cloud Storage bucket",
+      "resource": "google_storage_bucket.public_bucket",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "gcp",
+      "check_id": "CKV_GCP_28",
+      "check_name": "Ensure that Cloud Storage bucket is not anonymously or publicly accessible",
+      "resource": "google_storage_bucket_iam_binding.public_binding",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "gcp",
+      "check_id": "CKV_GCP_2",
+      "check_name": "Ensure Google compute firewall ingress does not allow unrestricted ssh access",
+      "resource": "google_compute_firewall.open_firewall",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "gcp",
+      "check_id": "CKV_GCP_3",
+      "check_name": "Ensure Google compute firewall ingress does not allow unrestricted rdp access",
+      "resource": "google_compute_firewall.open_firewall",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "gcp",
+      "check_id": "CKV_GCP_117",
+      "check_name": "Ensure basic roles are not used at project level.",
+      "resource": "google_project_iam_member.overprivileged_binding",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "excessive_iam_privilege",
+      "nist_csf2": [
+        "PR.AA",
+        "ID.RA"
+      ],
+      "iso_27001_2022": [
+        "A.5.15",
+        "A.5.18"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "checkov",
+      "cloud": "gcp",
+      "check_id": "CKV_GCP_49",
+      "check_name": "Ensure roles do not impersonate or manage Service Accounts used at project level",
+      "resource": "google_project_iam_member.overprivileged_binding",
+      "file_path": "\\main.tf",
+      "severity": "UNKNOWN",
+      "mapped": true,
+      "category": "excessive_iam_privilege",
+      "nist_csf2": [
+        "PR.AA",
+        "ID.RA"
+      ],
+      "iso_27001_2022": [
+        "A.5.15",
+        "A.5.18"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "gcp",
+      "check_id": "GCP-0001",
+      "check_name": "Ensure that Cloud Storage bucket is not anonymously or publicly accessible.",
+      "resource": "google_storage_bucket_iam_binding.public_binding",
+      "file_path": "main.tf",
+      "severity": "HIGH",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "gcp",
+      "check_id": "GCP-0002",
+      "check_name": "Ensure that Cloud Storage buckets have uniform bucket-level access enabled",
+      "resource": "google_storage_bucket.public_bucket",
+      "file_path": "main.tf",
+      "severity": "MEDIUM",
+      "mapped": true,
+      "category": "public_storage_exposure",
+      "nist_csf2": [
+        "PR.AA",
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.3",
+        "A.5.23"
+      ],
+      "lgpd": [
+        "Art. 46",
+        "Art. 6º, VII"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "gcp",
+      "check_id": "GCP-0027",
+      "check_name": "A firewall rule should not allow unrestricted ingress from any IP address.",
+      "resource": "google_compute_firewall.open_firewall",
+      "file_path": "main.tf",
+      "severity": "CRITICAL",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "gcp",
+      "check_id": "GCP-0066",
+      "check_name": "Cloud Storage buckets should be encrypted with a customer-managed key.",
+      "resource": "google_storage_bucket.public_bucket",
+      "file_path": "main.tf",
+      "severity": "LOW",
+      "mapped": true,
+      "category": "unencrypted_data_at_rest",
+      "nist_csf2": [
+        "PR.DS"
+      ],
+      "iso_27001_2022": [
+        "A.8.24"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "gcp",
+      "check_id": "GCP-0070",
+      "check_name": "RDP Access Is Not Restricted",
+      "resource": "google_compute_firewall.open_firewall",
+      "file_path": "main.tf",
+      "severity": "HIGH",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "gcp",
+      "check_id": "GCP-0071",
+      "check_name": "SSH Access Is Not Restricted",
+      "resource": "google_compute_firewall.open_firewall",
+      "file_path": "main.tf",
+      "severity": "MEDIUM",
+      "mapped": true,
+      "category": "open_network_ingress",
+      "nist_csf2": [
+        "PR.IR",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.20",
+        "A.8.21"
+      ],
+      "lgpd": [
+        "Art. 46"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "gcp",
+      "check_id": "GCP-0073",
+      "check_name": "Disable Default Firewall Rules",
+      "resource": "google_compute_firewall.open_firewall",
+      "file_path": "main.tf",
+      "severity": "MEDIUM",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "gcp",
+      "check_id": "GCP-0077",
+      "check_name": "Cloud Storage Bucket Logging Not Enabled",
+      "resource": "google_storage_bucket.public_bucket",
+      "file_path": "main.tf",
+      "severity": "MEDIUM",
+      "mapped": true,
+      "category": "missing_logging_monitoring",
+      "nist_csf2": [
+        "DE.CM",
+        "DE.AE"
+      ],
+      "iso_27001_2022": [
+        "A.8.16"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    },
+    {
+      "tool": "trivy",
+      "cloud": "gcp",
+      "check_id": "GCP-0078",
+      "check_name": "Cloud Storage Bucket Versioning Disabled",
+      "resource": "google_storage_bucket.public_bucket",
+      "file_path": "main.tf",
+      "severity": "MEDIUM",
+      "mapped": true,
+      "category": "resource_lifecycle_governance",
+      "nist_csf2": [
+        "ID.AM",
+        "PR.PS"
+      ],
+      "iso_27001_2022": [
+        "A.8.9"
+      ],
+      "lgpd": [
+        "Art. 37"
+      ]
+    }
+  ]
+}

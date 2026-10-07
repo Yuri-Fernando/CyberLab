@@ -1,0 +1,1297 @@
+{
+    "check_type": "terraform",
+    "results": {
+        "passed_checks": [
+            {
+                "check_id": "CKV_AZURE_36",
+                "bc_check_id": "BC_AZR_NETWORKING_16",
+                "check_name": "Ensure 'Trusted Microsoft Services' is enabled for Storage Account access",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": []
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountAzureServicesAccessEnabled",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/enable-trusted-microsoft-services-for-storage-account-access",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_43",
+                "bc_check_id": "BC_AZR_STORAGE_3",
+                "check_name": "Ensure Storage Accounts adhere to the naming rules",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "name"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountName",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-storage-policies/ensure-storage-accounts-adhere-to-the-naming-rules",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_3",
+                "bc_check_id": "BC_AZR_GENERAL_117",
+                "check_name": "Ensure that 'enable_https_traffic_only' is enabled",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "enable_https_traffic_only"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountsTransportEncryption",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/azr-general-3",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_244",
+                "bc_check_id": "BC_AZR_GENERAL_148",
+                "check_name": "Avoid the use of local users for Azure Storage unless necessary",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "local_user_enabled"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageLocalUsers",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-244",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_160",
+                "bc_check_id": "BC_AZR_NETWORKING_57",
+                "check_name": "Ensure that HTTP (port 80) access is restricted from the internet",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "security_rule"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    48,
+                    76
+                ],
+                "resource": "azurerm_network_security_group.open_nsg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.NSGRuleHTTPAccessRestricted",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-azure-http-port-80-access-from-the-internet-is-restricted",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_77",
+                "bc_check_id": "BC_AZR_NETWORKING_22",
+                "check_name": "Ensure that UDP Services are restricted from the Internet ",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "security_rule"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    48,
+                    76
+                ],
+                "resource": "azurerm_network_security_group.open_nsg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.NSGRuleUDPAccessRestricted",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-udp-services-are-restricted-from-the-internet",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_111",
+                "bc_check_id": "BC_AZR_GENERAL_41",
+                "check_name": "Ensure that key vault enables soft delete",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "soft_delete_enabled"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    79,
+                    93
+                ],
+                "resource": "azurerm_key_vault.no_soft_delete",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.KeyVaultEnablesSoftDelete",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/ensure-that-key-vault-enables-soft-delete",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV2_AZURE_38",
+                "bc_check_id": "BC_AZR_GENERAL_128",
+                "check_name": "Ensure soft-delete is enabled on Azure storage account",
+                "check_result": {
+                    "result": "PASSED",
+                    "entity": {
+                        "azurerm_storage_account": {
+                            "public_storage": {
+                                "__end_line__": 45,
+                                "__start_line__": 29,
+                                "account_replication_type": [
+                                    "LRS"
+                                ],
+                                "account_tier": [
+                                    "Standard"
+                                ],
+                                "allow_nested_items_to_be_public": [
+                                    true
+                                ],
+                                "blob_properties": [
+                                    {
+                                        "delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    0
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "location": [
+                                    "eastus"
+                                ],
+                                "min_tls_version": [
+                                    "TLS1_0"
+                                ],
+                                "name": [
+                                    "cyberlabmisconfigsa"
+                                ],
+                                "public_network_access_enabled": [
+                                    true
+                                ],
+                                "resource_group_name": [
+                                    "cyberlab-misconfig-rg"
+                                ],
+                                "__address__": "azurerm_storage_account.public_storage",
+                                "__provider_address__": "azurerm.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "blob_properties/delete_retention_policy/days",
+                        "account_kind",
+                        "blob_properties/delete_retention_policy"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {},
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-2-38",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            }
+        ],
+        "failed_checks": [
+            {
+                "check_id": "CKV_AZURE_59",
+                "bc_check_id": "BC_AZR_NETWORKING_18",
+                "check_name": "Ensure that Storage accounts disallow public access",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "public_network_access_enabled"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountDisablePublicAccess",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-storage-accounts-disallow-public-access",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_33",
+                "bc_check_id": "BC_AZR_LOGGING_4",
+                "check_name": "Ensure Storage logging is enabled for Queue service for read, write and delete requests",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "account_kind"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountLoggingQueueServiceEnabled",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-logging-policies/enable-requests-on-storage-logging-for-queue-service",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_44",
+                "bc_check_id": "BC_AZR_STORAGE_2",
+                "check_name": "Ensure Storage Account is using the latest version of TLS encryption",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "min_tls_version"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountMinimumTlsVersion",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-storage-policies/bc-azr-storage-2",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_206",
+                "bc_check_id": "BC_AZR_GENERAL_111",
+                "check_name": "Ensure that Storage Accounts use replication",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "account_replication_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageAccountsUseReplication",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/azr-general-206",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_190",
+                "bc_check_id": "BC_AZR_NETWORKING_72",
+                "check_name": "Ensure that Storage blobs restrict public access",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "allow_nested_items_to_be_public"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.StorageBlobRestrictPublicAccess",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/azr-networking-190",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_9",
+                "bc_check_id": "BC_AZR_NETWORKING_2",
+                "check_name": "Ensure that RDP access is restricted from the internet",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "security_rule/[1]/access",
+                        "security_rule/[1]/direction",
+                        "security_rule/[1]/protocol",
+                        "security_rule/[1]/destination_port_range",
+                        "security_rule/[1]/destination_port_ranges",
+                        "security_rule/[1]/source_address_prefix",
+                        "security_rule/[1]/source_address_prefixes"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    48,
+                    76
+                ],
+                "resource": "azurerm_network_security_group.open_nsg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.NSGRuleRDPAccessRestricted",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azr-networking-2",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_10",
+                "bc_check_id": "BC_AZR_NETWORKING_3",
+                "check_name": "Ensure that SSH access is restricted from the internet",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "security_rule/[0]/access",
+                        "security_rule/[0]/direction",
+                        "security_rule/[0]/protocol",
+                        "security_rule/[0]/destination_port_range",
+                        "security_rule/[0]/destination_port_ranges",
+                        "security_rule/[0]/source_address_prefix",
+                        "security_rule/[0]/source_address_prefixes"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    48,
+                    76
+                ],
+                "resource": "azurerm_network_security_group.open_nsg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.NSGRuleSSHAccessRestricted",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azr-networking-3",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_189",
+                "bc_check_id": "BC_AZR_NETWORKING_71",
+                "check_name": "Ensure that Azure Key Vault disables public network access",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "public_network_access_enabled"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    79,
+                    93
+                ],
+                "resource": "azurerm_key_vault.no_soft_delete",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.KeyVaultDisablesPublicNetworkAccess",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/azr-networking-189",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_109",
+                "bc_check_id": "BC_AZR_NETWORKING_33",
+                "check_name": "Ensure that key vault allows firewall rules settings",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "network_acls/[0]/default_action"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    79,
+                    93
+                ],
+                "resource": "azurerm_key_vault.no_soft_delete",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.KeyVaultEnablesFirewallRulesSettings",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-key-vault-allows-firewall-rules-settings",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_110",
+                "bc_check_id": "BC_AZR_GENERAL_40",
+                "check_name": "Ensure that key vault enables purge protection",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "purge_protection_enabled"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    79,
+                    93
+                ],
+                "resource": "azurerm_key_vault.no_soft_delete",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.KeyVaultEnablesPurgeProtection",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/ensure-that-key-vault-enables-purge-protection",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV_AZURE_42",
+                "bc_check_id": "BC_AZR_GENERAL_11",
+                "check_name": "Ensure the key vault is recoverable",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "purge_protection_enabled",
+                        "soft_delete_enabled"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    79,
+                    93
+                ],
+                "resource": "azurerm_key_vault.no_soft_delete",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.azure.KeyvaultRecoveryEnabled",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/ensure-the-key-vault-is-recoverable",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV2_AZURE_32",
+                "bc_check_id": "BC_AZR_GENERAL_125",
+                "check_name": "Ensure private endpoint is configured to key vault",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "azurerm_key_vault": {
+                            "no_soft_delete": {
+                                "__end_line__": 93,
+                                "__start_line__": 79,
+                                "location": [
+                                    "eastus"
+                                ],
+                                "name": [
+                                    "cyberlab-misconfig-kv"
+                                ],
+                                "network_acls": [
+                                    {
+                                        "bypass": [
+                                            "AzureServices"
+                                        ],
+                                        "default_action": [
+                                            "Allow"
+                                        ]
+                                    }
+                                ],
+                                "purge_protection_enabled": [
+                                    false
+                                ],
+                                "resource_group_name": [
+                                    "cyberlab-misconfig-rg"
+                                ],
+                                "sku_name": [
+                                    "standard"
+                                ],
+                                "soft_delete_retention_days": [
+                                    7
+                                ],
+                                "tenant_id": [
+                                    "00000000-0000-0000-0000-000000000000"
+                                ],
+                                "__address__": "azurerm_key_vault.no_soft_delete",
+                                "__provider_address__": "azurerm.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    79,
+                    93
+                ],
+                "resource": "azurerm_key_vault.no_soft_delete",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {},
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-2-32",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV2_AZURE_40",
+                "bc_check_id": "BC_AZR_IAM_20",
+                "check_name": "Ensure storage account is not configured with Shared Key authorization",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "azurerm_storage_account": {
+                            "public_storage": {
+                                "__end_line__": 45,
+                                "__start_line__": 29,
+                                "account_replication_type": [
+                                    "LRS"
+                                ],
+                                "account_tier": [
+                                    "Standard"
+                                ],
+                                "allow_nested_items_to_be_public": [
+                                    true
+                                ],
+                                "blob_properties": [
+                                    {
+                                        "delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    0
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "location": [
+                                    "eastus"
+                                ],
+                                "min_tls_version": [
+                                    "TLS1_0"
+                                ],
+                                "name": [
+                                    "cyberlabmisconfigsa"
+                                ],
+                                "public_network_access_enabled": [
+                                    true
+                                ],
+                                "resource_group_name": [
+                                    "cyberlab-misconfig-rg"
+                                ],
+                                "__address__": "azurerm_storage_account.public_storage",
+                                "__provider_address__": "azurerm.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "shared_access_key_enabled"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {},
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-iam-policies/bc-azure-2-40",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV2_AZURE_47",
+                "bc_check_id": "BC_AZR_IAM_22",
+                "check_name": "Ensure storage account is configured without blob anonymous access",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "azurerm_storage_account": {
+                            "public_storage": {
+                                "__end_line__": 45,
+                                "__start_line__": 29,
+                                "account_replication_type": [
+                                    "LRS"
+                                ],
+                                "account_tier": [
+                                    "Standard"
+                                ],
+                                "allow_nested_items_to_be_public": [
+                                    true
+                                ],
+                                "blob_properties": [
+                                    {
+                                        "delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    0
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "location": [
+                                    "eastus"
+                                ],
+                                "min_tls_version": [
+                                    "TLS1_0"
+                                ],
+                                "name": [
+                                    "cyberlabmisconfigsa"
+                                ],
+                                "public_network_access_enabled": [
+                                    true
+                                ],
+                                "resource_group_name": [
+                                    "cyberlab-misconfig-rg"
+                                ],
+                                "__address__": "azurerm_storage_account.public_storage",
+                                "__provider_address__": "azurerm.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "allow_nested_items_to_be_public"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {},
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-iam-policies/bc-azure-2-47",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV2_AZURE_33",
+                "bc_check_id": "BC_AZR_GENERAL_126",
+                "check_name": "Ensure storage account is configured with private endpoint",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "azurerm_storage_account": {
+                            "public_storage": {
+                                "__end_line__": 45,
+                                "__start_line__": 29,
+                                "account_replication_type": [
+                                    "LRS"
+                                ],
+                                "account_tier": [
+                                    "Standard"
+                                ],
+                                "allow_nested_items_to_be_public": [
+                                    true
+                                ],
+                                "blob_properties": [
+                                    {
+                                        "delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    0
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "location": [
+                                    "eastus"
+                                ],
+                                "min_tls_version": [
+                                    "TLS1_0"
+                                ],
+                                "name": [
+                                    "cyberlabmisconfigsa"
+                                ],
+                                "public_network_access_enabled": [
+                                    true
+                                ],
+                                "resource_group_name": [
+                                    "cyberlab-misconfig-rg"
+                                ],
+                                "__address__": "azurerm_storage_account.public_storage",
+                                "__provider_address__": "azurerm.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {},
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-2-33",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV2_AZURE_41",
+                "bc_check_id": "BC_AZR_IAM_21",
+                "check_name": "Ensure storage account is configured with SAS expiration policy",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "azurerm_storage_account": {
+                            "public_storage": {
+                                "__end_line__": 45,
+                                "__start_line__": 29,
+                                "account_replication_type": [
+                                    "LRS"
+                                ],
+                                "account_tier": [
+                                    "Standard"
+                                ],
+                                "allow_nested_items_to_be_public": [
+                                    true
+                                ],
+                                "blob_properties": [
+                                    {
+                                        "delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    0
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "location": [
+                                    "eastus"
+                                ],
+                                "min_tls_version": [
+                                    "TLS1_0"
+                                ],
+                                "name": [
+                                    "cyberlabmisconfigsa"
+                                ],
+                                "public_network_access_enabled": [
+                                    true
+                                ],
+                                "resource_group_name": [
+                                    "cyberlab-misconfig-rg"
+                                ],
+                                "__address__": "azurerm_storage_account.public_storage",
+                                "__provider_address__": "azurerm.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "shared_access_key_enabled",
+                        "sas_policy/expiration_period",
+                        "sas_policy"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {},
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-iam-policies/bc-azure-2-41",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            },
+            {
+                "check_id": "CKV2_AZURE_1",
+                "bc_check_id": "BC_AZR_GENERAL_32",
+                "check_name": "Ensure storage for critical data are encrypted with Customer Managed Key",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "azurerm_storage_account": {
+                            "public_storage": {
+                                "__end_line__": 45,
+                                "__start_line__": 29,
+                                "account_replication_type": [
+                                    "LRS"
+                                ],
+                                "account_tier": [
+                                    "Standard"
+                                ],
+                                "allow_nested_items_to_be_public": [
+                                    true
+                                ],
+                                "blob_properties": [
+                                    {
+                                        "delete_retention_policy": [
+                                            {
+                                                "days": [
+                                                    0
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "location": [
+                                    "eastus"
+                                ],
+                                "min_tls_version": [
+                                    "TLS1_0"
+                                ],
+                                "name": [
+                                    "cyberlabmisconfigsa"
+                                ],
+                                "public_network_access_enabled": [
+                                    true
+                                ],
+                                "resource_group_name": [
+                                    "cyberlab-misconfig-rg"
+                                ],
+                                "__address__": "azurerm_storage_account.public_storage",
+                                "__provider_address__": "azurerm.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "customer_managed_key/key_vault_key_id",
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "\\main.tf",
+                "file_abs_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf",
+                "repo_file_path": "/cloud_security/labs/azure/main.tf",
+                "file_line_range": [
+                    29,
+                    45
+                ],
+                "resource": "azurerm_storage_account.public_storage",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {},
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/ensure-storage-for-critical-data-are-encrypted-with-customer-managed-key",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "G:\\Outros computadores\\Meu computador\\Controle Base\\Projetos, Robos e Automa\u00e7\u00e3o\\Projetos Git\\Projetos Extras (Portfolio)\\Ciber\\cloud_security\\labs\\azure\\main.tf"
+            }
+        ],
+        "skipped_checks": [],
+        "parsing_errors": []
+    },
+    "summary": {
+        "passed": 8,
+        "failed": 17,
+        "skipped": 0,
+        "parsing_errors": 0,
+        "resource_count": 4,
+        "checkov_version": "3.2.459"
+    },
+    "url": "Add an api key '--bc-api-key <api-key>' to see more detailed insights via https://bridgecrew.cloud"
+}
