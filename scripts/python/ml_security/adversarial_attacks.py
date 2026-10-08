@@ -5,8 +5,8 @@ Implementa ataques de evasão contra modelos de classificação em tempo de INFE
 Estes ataques geram exemplos adversariais que enganam o modelo sem modificar dados treino.
 
 Ataques Implementados:
-1. FGSM (Fast Gradient Sign Method) - white-box, rápido
-2. PGD (Projected Gradient Descent) - white-box, mais potente
+1. FGSM-like por diferenças finitas - score-based / gradient estimation
+2. PGD-like por diferenças finitas - score-based / gradient estimation
 3. Black-box query-based - sem acesso aos gradientes
 4. Transferability - usar adversarial de um modelo em outro
 """
@@ -35,7 +35,7 @@ class AdversarialEvasionAttacker:
         self.log_dir.mkdir(exist_ok=True, parents=True)
         self.experiments = []
 
-    def fgsm_attack(
+    def finite_difference_fgsm_like(
         self,
         model,
         X: np.ndarray,
@@ -44,7 +44,7 @@ class AdversarialEvasionAttacker:
         scaler: StandardScaler = None
     ) -> Tuple[np.ndarray, Dict]:
         """
-        FGSM (Fast Gradient Sign Method) Attack - White-Box.
+        Ataque FGSM-like por estimativa numérica de gradiente.
 
         Movimento de uma etapa na direção do gradient que maximiza a perda.
         x_adv = x + epsilon * sign(∇_x L(x, y))
@@ -96,7 +96,9 @@ class AdversarialEvasionAttacker:
                 successful_attacks += 1
 
         metadata = {
-            "attack_type": "FGSM",
+            "attack_type": "finite_difference_fgsm_like",
+            "access_model": "score_based",
+            "gradient_source": "central_finite_difference",
             "epsilon": epsilon,
             "success_rate": successful_attacks / len(X),
             "successful_examples": successful_attacks
@@ -105,7 +107,7 @@ class AdversarialEvasionAttacker:
         logger.info(f"FGSM: {successful_attacks}/{len(X)} exemplos enganados")
         return X_adv, metadata
 
-    def pgd_attack(
+    def finite_difference_pgd_like(
         self,
         model,
         X: np.ndarray,
@@ -115,7 +117,7 @@ class AdversarialEvasionAttacker:
         num_steps: int = 40
     ) -> Tuple[np.ndarray, Dict]:
         """
-        PGD (Projected Gradient Descent) Attack - White-Box, Iterativo.
+        Ataque PGD-like iterativo por estimativa numérica de gradiente.
 
         Versão mais potente de FGSM que executa múltiplos passos.
         Projeta a cada passo para manter ||x_adv - x|| <= epsilon.
@@ -176,7 +178,9 @@ class AdversarialEvasionAttacker:
                 successful_attacks += 1
 
         metadata = {
-            "attack_type": "PGD",
+            "attack_type": "finite_difference_pgd_like",
+            "access_model": "score_based",
+            "gradient_source": "central_finite_difference",
             "epsilon": epsilon,
             "step_size": step_size,
             "num_steps": num_steps,
@@ -187,6 +191,21 @@ class AdversarialEvasionAttacker:
         logger.info(f"PGD: {successful_attacks}/{len(X)} exemplos enganados")
         return X_adv, metadata
 
+    def fgsm_attack(self, *args, **kwargs) -> Tuple[np.ndarray, Dict]:
+        """Compatibilidade: use finite_difference_fgsm_like em código novo."""
+        logger.warning(
+            "fgsm_attack() usa diferenças finitas e não é white-box puro; "
+            "prefira finite_difference_fgsm_like()."
+        )
+        return self.finite_difference_fgsm_like(*args, **kwargs)
+
+    def pgd_attack(self, *args, **kwargs) -> Tuple[np.ndarray, Dict]:
+        """Compatibilidade: use finite_difference_pgd_like em código novo."""
+        logger.warning(
+            "pgd_attack() usa diferenças finitas e não é white-box puro; "
+            "prefira finite_difference_pgd_like()."
+        )
+        return self.finite_difference_pgd_like(*args, **kwargs)
     def blackbox_query_attack(
         self,
         model_func: Callable,
